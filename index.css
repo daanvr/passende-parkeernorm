@@ -1,0 +1,147 @@
+body {
+    margin: 0;
+    padding: 0 ;
+    background: #fff;
+}
+
+#logo {
+    top: 13px;
+    left: 5px;
+    /* max-width: 10vw; */
+    height: 40px;
+    width: 200px;
+    z-index: 1;
+    position: fixed;
+}
+
+#map {
+    top: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    position: fixed;
+    /* transition: all 0.5s ease-in-out; */
+}
+
+.blured-map {
+    filter: blur(5px) grayscale(60%);
+}
+
+.menuPannel, .menuPannel * {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.menuPannel {
+    display: block;
+    width: 100%;
+    max-width: 50em;
+    margin: 10px auto;
+    height: 2.5em;
+    font-size: 10pt;
+    border-radius: 10px;
+    background: rgb(254, 254, 254);
+    box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 5px;
+    position: relative;
+}
+
+.menuPannel a {
+    width: 25%;
+    float: left;
+    text-align: center;
+    line-height: 2.5em;
+    color: #222;
+    position: relative;
+    z-index: 500;
+    cursor: pointer;
+    /* transition: all 0.2s ease-in-out; */
+    text-decoration: none;
+}
+
+.menuItem.active {
+    color: #fff;
+    text-shadow: rgba(0, 0, 0, 0.1) 0px -1px 2px;
+}
+
+.indicator {
+    display: block;
+    width: 25%;
+    height: 2.5em;
+    background: #D90057;
+    background-image: linear-gradient(-143deg, #FF4C76 0%, #D90057 100%);
+    border: solid #fff 3px;
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    z-index: 250;
+    /* transition: left 0.2s ease-in-out; */
+}
+
+.menuPannel .menuItem:nth-of-type(1).active~.indicator {
+    left: 0;
+}
+
+.menuPannel .menuItem:nth-of-type(2).active~.indicator {
+    left: 25%;
+}
+
+.menuPannel .menuItem:nth-of-type(3).active~.indicator {
+    left: 50%;
+}
+
+.menuPannel .menuItem:nth-of-type(4).active~.indicator {
+    left: 75%;
+}
+
+.content-pannel {
+    background-image: linear-gradient(-143deg, #FF4C76 0%, #D90057 100%);
+    box-shadow: 4px 4px 10px 0 rgba(0,0,0,0.27);
+    border-radius: 10px;
+    max-width: 1000px;
+    max-height: 500px;
+    width: 80vw;
+    height: 80vh;
+    z-index: 1000;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: auto;
+}
+
+.animated {
+    transition: all 0.15s ease-in-out;
+}
+
+.hidden-content-pannel {
+    opacity: 0;
+    visibility: hidden;
+}
+
+@media (min-width: 500px) {
+    .menuPannel {
+        font-size: 12pt;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    #logo {
+        bottom: 5px;
+        top: unset;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .menuPannel {
+        margin: 10px;
+        width: unset;
+    }
+}
