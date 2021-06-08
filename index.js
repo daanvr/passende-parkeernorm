@@ -184,6 +184,15 @@ map.on('load', function () {
     });
 
     map.on('mousemove', 'buurt-2020-v1-0-0vrvzi', function (e) {
+
+        // this is the correct method I think
+        // https://docs.mapbox.com/mapbox-gl-js/example/queryrenderedfeatures/
+        // var features = map.queryRenderedFeatures(e.point);
+
+
+
+
+
         map.getCanvas().style.cursor = 'pointer';
 
         //create geojson based on hovered coorinates
