@@ -135,17 +135,18 @@ function searchToObject() {
 
 function menuSelect(menuItem) {
     $(".menuItem").removeClass("active"); // make sure non menu item is slected
-    $("#map").removeClass("blured-map");
+    $("#map").addClass("blured-map");
     $(".content-pannel").addClass("hidden-content-pannel");
     switch (menuItem) { // execute 
         case 1:
             $("#menu-1").addClass("active"); // select aproriat <a> element (menu item)
-            $("#map").addClass("blured-map");
+            //$("#map").addClass("blured-map");
             $(".content-pannel").removeClass("hidden-content-pannel");
             break;
 
         case 2:
             $("#menu-2").addClass("active");
+            $("#map").removeClass("blured-map");
             break;
 
         case 3:

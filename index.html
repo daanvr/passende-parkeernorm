@@ -151,7 +151,7 @@
         </svg>
     </a>
 
-    <div id="map" class="animated"></div>
+    <div id="map" class="blured-map" class="animated"></div>
 
     <div class="menuPannel">
         <a class="menuItem animated active" id="menu-1" href="#1" onclick="menuSelect(1)">Home</a>
@@ -192,11 +192,7 @@
             // this is the correct method I think
             // https://docs.mapbox.com/mapbox-gl-js/example/queryrenderedfeatures/
             // var features = map.queryRenderedFeatures(e.point);
-    
-    
-    
-    
-    
+
             map.getCanvas().style.cursor = 'pointer';
     
             //create geojson based on hovered coorinates
