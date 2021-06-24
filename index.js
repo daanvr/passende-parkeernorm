@@ -119,7 +119,9 @@ function searchToObjectOLD() {
 }
 function searchToObject() {
     var urlDataString = decodeURIComponent(window.location.search);
-
+    if (urlDataString == "") { //note sure this is the right solution 
+        return "";
+    }
     urlDataString = "{\"" +
         urlDataString
             .replace(/\?/gi, "")
@@ -129,6 +131,7 @@ function searchToObject() {
 
     urlObj = JSON.parse(urlDataString);
     console.log(urlObj)
+
 
     return urlObj;
 }
@@ -164,3 +167,5 @@ function menuSelect(menuItem) {
         default:
     };
 };
+
+
