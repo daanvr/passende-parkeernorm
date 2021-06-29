@@ -139,12 +139,12 @@ function searchToObject() {
 function menuSelect(menuItem) {
     $(".menuItem").removeClass("active"); // make sure non menu item is slected
     $("#map").addClass("blured-map");
-    $(".content-pannel").addClass("hidden-content-pannel");
+    // $(".content-pannel").addClass("hidden-content-pannel");
+    $(".content-pannel").hide();
     switch (menuItem) { // execute 
         case 1:
             $("#menu-1").addClass("active"); // select aproriat <a> element (menu item)
-            //$("#map").addClass("blured-map");
-            $(".content-pannel").removeClass("hidden-content-pannel");
+            $("#home").show();
             break;
 
         case 2:
@@ -154,18 +154,35 @@ function menuSelect(menuItem) {
 
         case 3:
             $("#menu-3").addClass("active");
-            $("#map").addClass("blured-map");
-            $(".content-pannel").removeClass("hidden-content-pannel");
+            $("#backgroundInfromation").show();
             break;
 
         case 4:
             $("#menu-4").addClass("active");
-            $("#map").addClass("blured-map");
-            $(".content-pannel").removeClass("hidden-content-pannel");
+            $("#contact").show();
             break;
 
         default:
     };
 };
 
+
+
+function setDiagramValues() {
+
+    $("#buurt-data > tspan").text("-31%");
+    $("#verglijk-data > tspan").text("-32%");
+    $("#wijk-data > tspan").text("-33%");
+    $("#kerngetal-data > tspan").text("2.9");
+    
+    // 1 = 350  >> (X*350)
+    $("#buurt-bar").width("320");
+    $("#verglijk-bar").width("350");
+    $("#wijk-bar").width("380");
+    
+    var kerngetalPosition = 1 * 350 + 83;
+    $("#kerngetal").attr("transform", "translate(" + kerngetalPosition + ", 0)");
+    //X * 350 + 83
+}
+    
 

@@ -155,10 +155,65 @@ body {
     transition: all 0.15s ease-in-out;
 }
 
-.hidden-content-pannel {
-    opacity: 0;
-    visibility: hidden;
+
+
+#selectionPannel {
+    position: fixed;
+    top: 70px;
+    bottom: 50px;
+    left: 50px;
+    right: 50px;
+    background-color: white;
+    border-radius: 10px;
+    /* padding: 25px; */
+    box-shadow: 4px 4px 10px 0 rgba(0,0,0,0.27);
+    z-index: 2000;
 }
+#selectionPannel .info {
+    /* border: solid red 1px; */
+    width: 20%;
+    float: left;
+    height: 100%;
+
+    
+}
+
+#selectionPannel .padding {
+    margin: 25px 0 25px 25px;
+    border-right: 1px solid grey;
+    height: calc(100% - 50px);
+}
+
+#selectionPannel .data {
+    /* border: solid red 1px; */
+    width: 80%;
+    height: 100%;
+    float: left;
+    /* padding: 25px; */
+
+}
+
+.center5050 {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    /* width: 100%; */
+    /* height: 100%; */
+    transform: translate(-50%, -50%);
+}
+
+.infoBtn {
+    cursor: pointer;
+    display: inline;
+    transform:translate(2px, 5px);
+}
+
+#diagram {
+    width: 80%;
+    height: 100%;
+}
+
+
 
 @media (min-width: 500px) {
     .menuPannel {
