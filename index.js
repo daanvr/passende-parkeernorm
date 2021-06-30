@@ -1,3 +1,5 @@
+var selectionBuCode = "";
+
 mapboxgl.accessToken = 'pk.eyJ1IjoiZ291ZGFwcGVsIiwiYSI6ImNrcDcyYXMzdTB3ZjIydHF0cm94emc4Nm8ifQ.onzub-d-L_rzw9dPV8H2xw';
 var map = new mapboxgl.Map({
     container: 'map',
@@ -138,9 +140,12 @@ function searchToObject() {
 
 function menuSelect(menuItem) {
     $(".menuItem").removeClass("active"); // make sure non menu item is slected
+    $("#selectionPannel").removeClass("blured-map");
     $("#map").addClass("blured-map");
     // $(".content-pannel").addClass("hidden-content-pannel");
     $(".content-pannel").hide();
+    $("#selectionPannel").hide();
+
     switch (menuItem) { // execute 
         case 1:
             $("#menu-1").addClass("active"); // select aproriat <a> element (menu item)
@@ -155,6 +160,11 @@ function menuSelect(menuItem) {
         case 3:
             $("#menu-3").addClass("active");
             $("#backgroundInfromation").show();
+            if (selectionBuCode == "") {
+                $("#selectieBtn").hide();
+            } else {
+                $("#selectieBtn").show();
+            }
             break;
 
         case 4:
@@ -162,27 +172,146 @@ function menuSelect(menuItem) {
             $("#contact").show();
             break;
 
+        case "gemeente":
+            $("#menu-1").addClass("active");
+            $("#gemeente").show();
+            break;
+
+        case "ontwikkelaars":
+            $("#menu-1").addClass("active");
+            $("#ontwikkelaars").show();
+            break;
+
+        case "selectie":
+            $("#menu-2").addClass("active");
+            $("#selectionPannel").show();
+            newSelection()
+            break;
+
+        case "uitkomsten":
+            $("#menu-2").addClass("active");
+            $("#selectionPannel").show();
+            newSelection()
+            $("#uitkomsten").show();
+            $("#selectionPannel").addClass("blured-map");
+            break;
+
+
         default:
     };
 };
 
 
 
-function setDiagramValues() {
+function newSelection(BUCODE) {
+    if (BUCODE != undefined) {
+        selectionBuCode = BUCODE;
+    }
+    $("#selectionPannel").show();
+    $("#map").addClass("blured-map");
 
-    $("#buurt-data > tspan").text("-31%");
-    $("#verglijk-data > tspan").text("-32%");
-    $("#wijk-data > tspan").text("-33%");
-    $("#kerngetal-data > tspan").text("2.9");
-    
-    // 1 = 350  >> (X*350)
-    $("#buurt-bar").width("320");
-    $("#verglijk-bar").width("350");
-    $("#wijk-bar").width("380");
-    
-    var kerngetalPosition = 1 * 350 + 83;
-    $("#kerngetal").attr("transform", "translate(" + kerngetalPosition + ", 0)");
-    //X * 350 + 83
+    var shortBuCode = "" // remove the fluf and kee the part that helps disside what file to load
+    switch (BUCODE) {
+        case "11":
+            // load this file
+            break;
+
+        default:
+            break;
+    }
+
+
+    var dropdownSlections = {
+        locatie: $("#selectionPannel > div.info > div > form:nth-child(4) > select").val(),
+        ligging: $("#selectionPannel > div.info > div > form:nth-child(5) > select").val(),
+        Steedelijkheidsgraad: $("#selectionPannel > div.info > div > form:nth-child(6) > select").val(),
+        type_wooning: $("#selectionPannel > div.data > div > form > select").val()
+    }
+    // console.log(dropdownSlections)
+    // console.log(BUCODE)
+
+    // [ ] - Slect filte to load
+    // [ ] - load data from json on server
+    // [ ] - get values from loaded json
+    // [ ] - Chequ which values to select based on selection
+    // [ ] - format values
+    // [ ] - set values
+
+    var values = {
+        gemente_naam: "Olst",
+        wijk_naam: "Wijknaam",
+        buurt_naam: "Buurtnaam",
+
+        // binBBKom
+        // buitBBKom
+        locatie: "buitBBKom",
+
+        // centrum
+        // schil
+        // restBBKom
+        // buitGeb
+        ligging: "schil",
+
+        // zeer
+        // sterk
+        // matig
+        // weinig
+        // niet
+        Steedelijkheidsgraad: "sterk",
+
+        // vrij_koop
+        // vrij_huur
+        // vrij_social
+        // twee_kap_koop
+        // twee_kap_huur
+        // twee_kap_social
+        // rij_koop
+        // rij_huur
+        // rij_social
+        // app_hoog_koop
+        // app_hoog_huur
+        // app_hoog_social
+        // app_laag_koop
+        // app_laag_huur
+        // app_laag_social
+        type_wooning: "twee_kap_social",
+
+        buurt_pct: "-42%",
+        verlijk_pct: "-54%",
+        wijk_pct: "+98%",
+        kerngetal_val: " 2.6",
+
+        buurt_width: 365,
+        verlijk_width: 784,
+        wijk_width: 659,
+        kerngetal_position: 783 //1 * 350 + 83
+    }
+
+    setDiagramValues();
+    function setDiagramValues() {
+        $("#selectionPannel > div.info > div > h1").text(values.gemente_naam); // gemeente
+        $("#selectionPannel > div.info > div > h3:nth-child(2)").text(values.wijk_naam); // wijk
+        $("#selectionPannel > div.info > div > h3:nth-child(3)").text(values.buurt_naam); // buurt
+
+        $("#selectionPannel > div.info > div > form:nth-child(4) > select").val(values.locatie)
+        $("#selectionPannel > div.info > div > form:nth-child(5) > select").val(values.ligging)
+        $("#selectionPannel > div.info > div > form:nth-child(6) > select").val(values.Steedelijkheidsgraad)
+        $("#selectionPannel > div.data > div > form > select").val(values.type_wooning)
+
+        $("#buurt-data > tspan").text(values.buurt_pct); // buurt
+        $("#verglijk-data > tspan").text(values.verlijk_pct); // verglijk
+        $("#wijk-data > tspan").text(values.wijk_pct); // wijk
+
+        $("#kerngetal-data > tspan").text(values.kerngetal_val); // kerngetal
+
+        // 1 = 350  >> (X*350)
+        $("#buurt-bar").width(values.buurt_width); // bburt bar brete
+        $("#verglijk-bar").width(values.verlijk_width); // verglijkbaar bar brete
+        $("#wijk-bar").width(values.wijk_width); // wijk bar brete
+
+        var kerngetalPosition = 1 * 350 + 83;
+        $("#kerngetal").attr("transform", "translate(" + values.kerngetal_position + ", 0)"); // Kerngetal positie 
+        //X * 350 + 83
+    }
 }
-    
 
