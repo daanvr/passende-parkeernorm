@@ -1,4 +1,29 @@
 var selectionBuCode = "";
+var data;
+var dataIsReadyBol = false;
+var dataIndex = [];
+
+// sent a GET request to retrieve the CSV file contents
+$.get("https://raw.githubusercontent.com/daanvr/passende-parkeernorm/main/extra/data.csv", function(CSVdata) {
+    // CSVdata is populated with the file contents
+    // ready to be converted into an Array
+    data = $.csv.toArrays(CSVdata);
+    dataIsReadyBol = true;
+    dataIsReady();
+});
+
+
+
+function dataIsReady() {
+    console.log(data)
+    for (i in data) {
+        dataIndex.push(data[i][0])
+    }
+    if (selectionBuCode != "") {
+        newSelection()
+    }
+}
+
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZ291ZGFwcGVsIiwiYSI6ImNrcDcyYXMzdTB3ZjIydHF0cm94emc4Nm8ifQ.onzub-d-L_rzw9dPV8H2xw';
 var map = new mapboxgl.Map({
@@ -68,7 +93,7 @@ map.addControl( // Add the control to the map.
         accessToken: mapboxgl.accessToken,
         localGeocoder: coordinatesGeocoder,
         zoom: 4,
-        placeholder: 'Postcode of gemeente',
+        placeholder: 'Gemeente of postcode',
         mapboxgl: mapboxgl
     })
 );
@@ -221,19 +246,45 @@ function newSelection(BUCODE) {
     if (BUCODE != undefined) {
         selectionBuCode = BUCODE;
     }
+
+
+    function selectData(code) {
+        return data[dataIndex.indexOf(selectionBuCode)]
+    }
+
+    var buurtCode = jQuery.extend({}, BUCODE);
+    var wijkCode = jQuery.extend({}, BUCODE);
+    var gemCode = jQuery.extend({}, BUCODE);
+
+    // buurtCode = BUCODE.clone();
+    // wijkCode = BUCODE.clone().replace("BU", "WK");
+    // gemCode = BUCODE.clone().replace("BU", "GM");
+
+    console.log(buurtCode)
+    console.log(wijkCode)
+    console.log(gemCode)
+
+    buurtData = selectData(code)
+
+    // Buurt data = buDa
+    buDa = data[dataIndex.indexOf(selectionBuCode)];
+    console.log(buDa)
+
     $("#selectionPannel").show();
     $("#map").addClass("blured-map");
     $("#closeOnClick").show();
 
-    var shortBuCode = "" // remove the fluf and kee the part that helps disside what file to load
-    switch (BUCODE) {
-        case "11":
-            // load this file
-            break;
+    // var shortBuCode = "" // remove the fluf and kee the part that helps disside what file to load
+    // switch (BUCODE) {
+    //     case "11":
+    //         // load this file
+    //         break;
 
-        default:
-            break;
-    }
+    //     default:
+    //         break;
+    // }
+
+
 
 
     var dropdownSlections = {
@@ -253,7 +304,7 @@ function newSelection(BUCODE) {
     // [ ] - set values
 
     var values = {
-        gemente_naam: "Olst",
+        gemente_naam: buDa[3],
         wijk_naam: "Wijknaam",
         buurt_naam: "Buurtnaam",
 
