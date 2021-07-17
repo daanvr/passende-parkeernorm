@@ -19,11 +19,8 @@
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css" rel="stylesheet" />
 
     <!-- geocoder from mapbox -->
-    <script
-        src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js"></script>
-    <link rel="stylesheet"
-        href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css"
-        type="text/css">
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js"></script>
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css" type="text/css">
 
     <!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
@@ -33,9 +30,8 @@
 
 <body onresize="hideInfopanel()">
 
-    <a id="logo" href="https://www.goudappel.nl" target="_blank">
-        <svg id="logo" width="304px" height="69px" viewBox="0 0 304 69" version="1.1" xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink">
+    <a id="logobox" href="https://www.goudappel.nl" target="_blank">
+        <svg id="logo" width="304px" height="69px" viewBox="0 0 304 69" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <defs>
                 <linearGradient x1="17.2284108%" y1="4.80717124%" x2="83.5587064%" y2="95.1340106%"
                     id="linearGradient-1">
@@ -207,30 +203,25 @@
         <div class="indicator animated"></div>
     </div>
 
+    <div id="closeOnClick" onclick="menuSelect(2)"></div>
+
     <div id="home" class="content-pannel animated">
         <h1 class="title" style="margin-bottom: 0;">Passende parkeernorm</h1>
         <div class="text">
             <p style="margin-top: 0; text-align: center;">Van onnodige parkeerplaats naar betaalbare woning!</p>
             <p>
-                Passendeparkeernorm.nl laat het daadwerkelijke <b>autobezit</b> zien van alle buurten in Nederland.
-                Hierbij
-                wordt het autobezit getoond naar <b>woningtype</b> en <b>eigendomssituatie</b>. Tevens wordt aangegeven
-                of dit
-                autobezit afwijkt van het aantal benodigde parkeerplaatsen berekend op basis van een
+                Passendeparkeernorm.nl laat het daadwerkelijke <b class="linkToIntern" onclick="menuSelect(3, 'Autobezit')">autobezit</b> zien van alle buurten in Nederland. Hierbij wordt het autobezit getoond naar <b>woningtype</b> en <b>eigendomssituatie</b>.
+                Tevens wordt aangegeven of dit autobezit afwijkt van het aantal benodigde parkeerplaatsen berekend op basis van een
                 <b>parkeerkengetal</b>.
             </p>
             <p>
-                Als er afwijkingen zijn en de gemeentelijke parkeernormen op landelijke kengetallen zijn gebaseerd,
-                betekent dit dat de gemeentelijke parkeernormen mogelijk niet goed aansluiten bij de reële,
-                daadwerkelijk parkeerbehoefte. Dit inzicht kan bij het realiseren van nieuwe woningen input zijn voor
-                het zo goed mogelijk toepassen van de parkeernorm, in de vorm van onderbouwd maatwerk. Mogelijk wordt
-                dan voorkomen dat financiële middelen worden ingezet voor de aanleg van parkeerplaatsen die niet
+                Als er afwijkingen zijn en de gemeentelijke parkeernormen op landelijke kengetallen zijn gebaseerd, betekent dit dat de gemeentelijke parkeernormen mogelijk niet goed aansluiten bij de reële, daadwerkelijk parkeerbehoefte. Dit inzicht kan bij het realiseren
+                van nieuwe woningen input zijn voor het zo goed mogelijk toepassen van de parkeernorm, in de vorm van onderbouwd maatwerk. Mogelijk wordt dan voorkomen dat financiële middelen worden ingezet voor de aanleg van parkeerplaatsen die niet
                 gebruikt gaan worden.
             </p>
             <p>
-                Passendeparkeernorm.nl geeft tevens inzicht in de mate waarmee rekening gehouden kan worden met de
-                parkeerbehoefte van bezoekers van bewoners. Voor dit <b>bezoekersparkeren</b> wordt (te) vaak zonder
-                onderbouwing het kengetal van 0,3 parkeerplaats per woning aangehouden.
+                Passendeparkeernorm.nl geeft tevens inzicht in de mate waarmee rekening gehouden kan worden met de parkeerbehoefte van bezoekers van bewoners. Voor dit <b>bezoekersparkeren</b> wordt (te) vaak zonder onderbouwing het kengetal van 0,3 parkeerplaats
+                per woning aangehouden.
             </p>
 
         </div>
@@ -248,62 +239,36 @@
         <div class="text">
             <!-- <p style="margin-top: 0; text-align: center;">Van onnodige parkeerplaats naar betaalbare woning!</p> -->
             <p>
-                Passendeparkeernorm.nl laat het daadwerkelijke autobezit zien naar [woningtype] en [eigendomssituatie]
-                voor alle buurten in Nederland. Inzicht in dit autobezit kan voor gemeenten op minimaal twee manieren
-                van essentieel belang zijn:
-            <ul>
-                <li>bij het [actualiseren van parkeernormen] voor woningen;</li>
-                <li>bij het zorgen voor een aanvaardbaar woon- en leefklimaat in het kader van een [goede ruimtelijke
-                    ordening] door het toepassen van passende parkeernormen.</li>
-            </ul>
+                Passendeparkeernorm.nl laat het daadwerkelijke autobezit zien naar [woningtype] en [eigendomssituatie] voor alle buurten in Nederland. Inzicht in dit autobezit kan voor gemeenten op minimaal twee manieren van essentieel belang zijn:
+                <ul>
+                    <li>bij het [actualiseren van parkeernormen] voor woningen;</li>
+                    <li>bij het zorgen voor een aanvaardbaar woon- en leefklimaat in het kader van een [goede ruimtelijke ordening] door het toepassen van passende parkeernormen.</li>
+                </ul>
             </p>
             <p>
-                <b>Actualiseren parkeernormen</b><br>
-                Door de getoonde blik op de werkelijkheid kan met passendeparkeernorm.nl
-                geanalyseerd worden of het daadwerkelijke autobezit voor bepaalde typen woningen in buurten of wijken
-                afwijkt van het aantal parkeerplaatsen dat volgens de vigerende gemeentelijke parkeernormen aangelegd
-                zou moeten worden. Als dit structureel zo is, kan dit een belangrijke indicatie zijn dat parkeernormen
-                aan actualisatie toe zijn.
+                <b>Actualiseren parkeernormen</b><br> Door de getoonde blik op de werkelijkheid kan met passendeparkeernorm.nl geanalyseerd worden of het daadwerkelijke autobezit voor bepaalde typen woningen in buurten of wijken afwijkt van het aantal
+                parkeerplaatsen dat volgens de vigerende gemeentelijke parkeernormen aangelegd zou moeten worden. Als dit structureel zo is, kan dit een belangrijke indicatie zijn dat parkeernormen aan actualisatie toe zijn.
             </p>
             <p>
-                De informatie op passendeparkeernorm.nl kan niet alleen gebruikt worden voor
-                het per gemeente meest geschikte onderscheid naar type woningen, maar ook voor de best passende
-                gebiedsindeling voor parkeernormen. Ook kunnen specifieke deelvragen worden beantwoord (bijvoorbeeld of
-                de huidige parkeernorm voor sociale huurwoningen nog passend is). Door het koppelen van bij Goudappel
-                beschikbare informatie (bijvoorbeeld over huishoudleeftijd en huishoudomvang) of door het aanleveren van
-                aanvullende informatie (bijvoorbeeld over gemiddelde WOZ-waarde per buurt) kan tevens beschouwd worden
-                of het verwerken van prijsklasse en maatvoering van woningen mogelijk is, zin heeft en zo ja, hoe dat
-                dan doorvertaald moet worden naar toepasbare parkeernormen.
-            </p>
-            <p>
-                <b>Goede ruimtelijke ordening</b><br>
-                Als parkeernormen niet goed aansluiten bij de werkelijkheid kan dit er
-                enerzijds voor zorgen dat er parkeerproblemen in buurten aan ontstaan, maar anderzijds ook dat ruimte en
-                financiële middelen onnodig worden ingezet. Als het daadwerkelijke autobezit voor een bepaald type
-                woning structureel afwijkt van het aantal parkeerplaatsen dat je moet aanleggen op basis van
-                gemeentelijke parkeernormen is er waarschijnlijk geen sprake van een goede ruimtelijke ordening. Als dit
-                zo is, kan dit voor een gemeente een concrete aanleiding zijn om met de ontwikkelaar in gesprek te gaan
-                over het toepassen van een passende parkeernorm.
-            </p>
-            <p>
-                Hierbij is het dan wel noodzakelijk om ook zicht te
-                hebben op de daadwerkelijke [parkeerdruk] op en rondom de betreffende ontwikkelingslocatie, nut en
-                noodzaak om een ‘standaard’ bezoekersdeel in de parkeernorm toe te passen en de ter plaatse zichtbare
-                [trend in autobezit]. Dit laatste is bijvoorbeeld van belang als er sprake is van ‘verjonging’ van
-                buurten of wijken, waardoor er meer tweeverdieners zijn gekomen die vaker twee auto’s hebben of gezinnen
-                die opgroeiende thuiswonende kinderen hebben, die een eigen auto gaan rijden. Ook het bouwen voor
-                specifieke doelgroepen en/of het nemen van specifieke aan mobiliteit gerelateerde maatregelen (aanbieden
-                deelauto’s, verbeteren openbaar vervoer etc.) kunnen flink van invloed zijn op het te realiseren aantal
-                parkeerplaatsen. Goudappel kan de benodigde gegevens in beeld brengen en goed onderbouwen of, waarom en
-                in welke mate onderbouwd afgeweken zou kunnen worden van vigerende parkeernormen.
-            </p>
-            <p>
-                Hiernaast speelt het
-                gewenste beleid van individuele gemeenten natuurlijk een belangrijk rol. Sommige gemeenten hebben een
-                sterke visie op verkeer en mobiliteit en vertalen deze visie door naar beleid (en uiteindelijk ook
-                parkeernormen). Hierbij kan het zowel om vraagvolgend dan wel sturend beleid gaan. Met dit laatste wordt
-                gedoeld op een actieve sturing op een daling van het autobezit, onder meer door verlaging van
+                De informatie op passendeparkeernorm.nl kan niet alleen gebruikt worden voor het per gemeente meest geschikte onderscheid naar type woningen, maar ook voor de best passende gebiedsindeling voor parkeernormen. Ook kunnen specifieke deelvragen worden beantwoord
+                (bijvoorbeeld of de huidige parkeernorm voor sociale huurwoningen nog passend is). Door het koppelen van bij Goudappel beschikbare informatie (bijvoorbeeld over huishoudleeftijd en huishoudomvang) of door het aanleveren van aanvullende
+                informatie (bijvoorbeeld over gemiddelde WOZ-waarde per buurt) kan tevens beschouwd worden of het verwerken van prijsklasse en maatvoering van woningen mogelijk is, zin heeft en zo ja, hoe dat dan doorvertaald moet worden naar toepasbare
                 parkeernormen.
+            </p>
+            <p>
+                <b>Goede ruimtelijke ordening</b><br> Als parkeernormen niet goed aansluiten bij de werkelijkheid kan dit er enerzijds voor zorgen dat er parkeerproblemen in buurten aan ontstaan, maar anderzijds ook dat ruimte en financiële middelen onnodig
+                worden ingezet. Als het daadwerkelijke autobezit voor een bepaald type woning structureel afwijkt van het aantal parkeerplaatsen dat je moet aanleggen op basis van gemeentelijke parkeernormen is er waarschijnlijk geen sprake van een goede
+                ruimtelijke ordening. Als dit zo is, kan dit voor een gemeente een concrete aanleiding zijn om met de ontwikkelaar in gesprek te gaan over het toepassen van een passende parkeernorm.
+            </p>
+            <p>
+                Hierbij is het dan wel noodzakelijk om ook zicht te hebben op de daadwerkelijke [parkeerdruk] op en rondom de betreffende ontwikkelingslocatie, nut en noodzaak om een ‘standaard’ bezoekersdeel in de parkeernorm toe te passen en de ter plaatse zichtbare
+                [trend in autobezit]. Dit laatste is bijvoorbeeld van belang als er sprake is van ‘verjonging’ van buurten of wijken, waardoor er meer tweeverdieners zijn gekomen die vaker twee auto’s hebben of gezinnen die opgroeiende thuiswonende kinderen
+                hebben, die een eigen auto gaan rijden. Ook het bouwen voor specifieke doelgroepen en/of het nemen van specifieke aan mobiliteit gerelateerde maatregelen (aanbieden deelauto’s, verbeteren openbaar vervoer etc.) kunnen flink van invloed
+                zijn op het te realiseren aantal parkeerplaatsen. Goudappel kan de benodigde gegevens in beeld brengen en goed onderbouwen of, waarom en in welke mate onderbouwd afgeweken zou kunnen worden van vigerende parkeernormen.
+            </p>
+            <p>
+                Hiernaast speelt het gewenste beleid van individuele gemeenten natuurlijk een belangrijk rol. Sommige gemeenten hebben een sterke visie op verkeer en mobiliteit en vertalen deze visie door naar beleid (en uiteindelijk ook parkeernormen). Hierbij kan het
+                zowel om vraagvolgend dan wel sturend beleid gaan. Met dit laatste wordt gedoeld op een actieve sturing op een daling van het autobezit, onder meer door verlaging van parkeernormen.
             </p>
 
         </div>
@@ -318,31 +283,21 @@
         <div class="text">
             <!-- <p style="margin-top: 0; text-align: center;">Van onnodige parkeerplaats naar betaalbare woning!</p> -->
             <p>
-                Als ontwikkelaar ben je verplicht om bij (woningbouw)ontwikkelingen voldoende parkeerplaatsen aan te
-                leggen. Met passendeparkeernorm.nl kan voor woningen die gerealiseerd gaan worden bekeken worden of het
-                daadwerkelijke autobezit voor die woningen in een buurt of wijk afwijkt van het aantal parkeerplaatsen
-                dat je moet aanleggen op basis van gemeentelijke parkeernormen.
+                Als ontwikkelaar ben je verplicht om bij (woningbouw)ontwikkelingen voldoende parkeerplaatsen aan te leggen. Met passendeparkeernorm.nl kan voor woningen die gerealiseerd gaan worden bekeken worden of het daadwerkelijke autobezit voor die woningen in
+                een buurt of wijk afwijkt van het aantal parkeerplaatsen dat je moet aanleggen op basis van gemeentelijke parkeernormen.
             </p>
             <p>
-                Een afwijking kan betekenen dat de gemeentelijke parkeernormen voor die woningen mogelijk niet goed
-                aansluiten bij de reële, daadwerkelijk parkeerbehoefte. Als dit zo is, kan dit een concrete aanleiding
-                zijn om met de gemeente in gesprek te gaan over de parkeernorm. Hierbij is het dan wel noodzakelijk om
-                ook inzicht te hebben in de daadwerkelijke [parkeerdruk] op en rondom de betreffende
-                ontwikkelingslocatie, de noodzaak van het bezoekersdeel in de parkeernorm en de ter plaatse geldende
-                [trend in autobezit]. Dit laatste is bijvoorbeeld van belang als er sprake is van ‘verjonging’ van
-                buurten of wijken, waardoor er meer tweeverdieners zijn gekomen die vaker twee auto’s hebben of gezinnen
-                die opgroeiende thuiswonende kinderen hebben, die een eigen auto gaan rijden.
+                Een afwijking kan betekenen dat de gemeentelijke parkeernormen voor die woningen mogelijk niet goed aansluiten bij de reële, daadwerkelijk parkeerbehoefte. Als dit zo is, kan dit een concrete aanleiding zijn om met de gemeente in gesprek te gaan over
+                de parkeernorm. Hierbij is het dan wel noodzakelijk om ook inzicht te hebben in de daadwerkelijke [parkeerdruk] op en rondom de betreffende ontwikkelingslocatie, de noodzaak van het bezoekersdeel in de parkeernorm en de ter plaatse geldende
+                [trend in autobezit]. Dit laatste is bijvoorbeeld van belang als er sprake is van ‘verjonging’ van buurten of wijken, waardoor er meer tweeverdieners zijn gekomen die vaker twee auto’s hebben of gezinnen die opgroeiende thuiswonende kinderen
+                hebben, die een eigen auto gaan rijden.
             </p>
             <p>
-                Ook het bouwen voor specifieke doelgroepen en/of het nemen van specifieke aan mobiliteit gerelateerde
-                maatregelen (aanbieden deelauto’s, verbeteren openbaar vervoer etc.) kunnen flink van invloed zijn op
-                het te realiseren aantal parkeerplaatsen.
+                Ook het bouwen voor specifieke doelgroepen en/of het nemen van specifieke aan mobiliteit gerelateerde maatregelen (aanbieden deelauto’s, verbeteren openbaar vervoer etc.) kunnen flink van invloed zijn op het te realiseren aantal parkeerplaatsen.
             </p>
             <p>
-                Goudappel kan de benodigde gegevens in beeld brengen en goed onderbouwen of, waarom en in welke mate
-                afgeweken zou kunnen worden van gemeentelijke parkeernormen. Als dit zo is, kan overdimensionering van
-                het parkeerareaal, en dus onnodig ruimtegebruik en onnodige inzet van financiële middelen worden
-                voorkomen.
+                Goudappel kan de benodigde gegevens in beeld brengen en goed onderbouwen of, waarom en in welke mate afgeweken zou kunnen worden van gemeentelijke parkeernormen. Als dit zo is, kan overdimensionering van het parkeerareaal, en dus onnodig ruimtegebruik
+                en onnodige inzet van financiële middelen worden voorkomen.
             </p>
 
         </div>
@@ -356,131 +311,79 @@
         <h1 class="title" style="margin-bottom: 0;">Achtergrondinformatie</h1>
         <div class="text">
 
-            <p>De resultaten die op passendeparkeernorm.nl getoond zijn gebaseerd op berekeningen van Goudappel op basis
-                van het combineren van gegevens uit eigen analysebestanden/bronnen met output van onderzoek op
-                niet-openbare microdata van het Centraal Bureau voor de Statistiek (CBS) over <b>autobezit</b>,
-                woningvoorraad, <b>type woningen</b>, <b>eigendomssituatie</b> en inkomen. Voor de duidelijkheid wordt
-                vermeld dat CBS-microdata altijd binnen de volledig afgesloten netwerkomgeving van het CBS blijft, en
-                alleen resultaten van bewerkingen/statistische gegevens die niet naar personen te herleiden is (kunnen)
-                worden geëxporteerd. En om deze gegevens ook nog de laatste mogelijke vorm van onthullingsgevaar naar
-                huishoudens te voorkomen, zijn alle gegevens die betrekking hebben op minder dan tien huishoudens
-                verwijderd. Ook zijn de aantallen huishoudens afgerond op vijftallen en het gemiddelde aantal auto’s per
-                huishouden is afgerond op 1 decimaal.
+            <p>De resultaten die op passendeparkeernorm.nl getoond zijn gebaseerd op berekeningen van Goudappel op basis van het combineren van gegevens uit eigen analysebestanden/bronnen met output van onderzoek op niet-openbare microdata van het Centraal
+                Bureau voor de Statistiek (CBS) over <b>autobezit</b>, woningvoorraad, <b>type woningen</b>, <b>eigendomssituatie</b> en inkomen. Voor de duidelijkheid wordt vermeld dat CBS-microdata altijd binnen de volledig afgesloten netwerkomgeving
+                van het CBS blijft, en alleen resultaten van bewerkingen/statistische gegevens die niet naar personen te herleiden is (kunnen) worden geëxporteerd. En om deze gegevens ook nog de laatste mogelijke vorm van onthullingsgevaar naar huishoudens
+                te voorkomen, zijn alle gegevens die betrekking hebben op minder dan tien huishoudens verwijderd. Ook zijn de aantallen huishoudens afgerond op vijftallen en het gemiddelde aantal auto’s per huishouden is afgerond op 1 decimaal.
             </p>
             <p>De gebruikte indeling van gemeente, wijk en buurt is de CBS-indeling van 2020. De
-                <b>stedelijkheidsgraad</b> (omgevingsadressendichtheid) van gemeenten, wijken en buurten komt uit
-                ‘Kerncijfers wijken en buurten 2020’. De in de analyse gebruikte gegevens betreffende woningvoorraad,
-                eigendomssituatie, huishoudsamenstelling en RDW-gegevens hebben betrekking op het jaar 2020. Het
-                ‘bezit’/gebruik van een leaseauto heeft betrekking op het jaar 2019.
+                <b>stedelijkheidsgraad</b> (omgevingsadressendichtheid) van gemeenten, wijken en buurten komt uit ‘Kerncijfers wijken en buurten 2020’. De in de analyse gebruikte gegevens betreffende woningvoorraad, eigendomssituatie, huishoudsamenstelling
+                en RDW-gegevens hebben betrekking op het jaar 2020. Het ‘bezit’/gebruik van een leaseauto heeft betrekking op het jaar 2019.
             </p>
 
             <h1 class="title" style="margin-bottom: 0;">Toelichting begrippen</h1>
 
-            <p><b>Autobezit</b>: De waarde voor autobezit toont per buurt het privébezit van personenauto’s en
-                bestelauto‘s per bewoonde woning naar <b>woningtype</b> en <b>eigendomssituatie</b>. Ook het
-                ‘bezit’/gebruik van een leaseauto maakt deel uit van het autobezit. Private lease is niet in het
-                autobezit verwerkt.
+            <p><b id="Autobezit">Autobezit</b>: De waarde voor autobezit toont per buurt het privébezit van personenauto’s en bestelauto‘s per bewoonde woning naar <b>woningtype</b> en <b>eigendomssituatie</b>. Ook het ‘bezit’/gebruik van een leaseauto maakt
+                deel uit van het autobezit. Private lease is niet in het autobezit verwerkt.
             </p>
-            <p>Bedrijfsauto’s die mee naar huis worden genomen maken geen onderdeel uit van het getoonde autobezit.
-                Goudappel kan op basis van eerder uitgevoerd onderzoek per type woning en eigendomssituatie hiervoor
-                echter een onderbouwd aandeel/waarde aangeven. Alternatief hiervoor is een aantal doelgerichte
-                steekproeven in een specifieke gemeente, wijk of buurt waarvoor Goudappel de onderzoeksopzet al gereed
-                heeft. De cijfers over autobezit geven geen inzicht in de <b>parkeerdruk</b> in en rondom de betreffende
-                buurt. Ook is geen rekening gehouden met <b>trends in autobezit</b>. Er is alleen rekening gehouden met
-                het actuele autobezit.
+            <p>Bedrijfsauto’s die mee naar huis worden genomen maken geen onderdeel uit van het getoonde autobezit. Goudappel kan op basis van eerder uitgevoerd onderzoek per type woning en eigendomssituatie hiervoor echter een onderbouwd aandeel/waarde
+                aangeven. Alternatief hiervoor is een aantal doelgerichte steekproeven in een specifieke gemeente, wijk of buurt waarvoor Goudappel de onderzoeksopzet al gereed heeft. De cijfers over autobezit geven geen inzicht in de <b>parkeerdruk</b>                in en rondom de betreffende buurt. Ook is geen rekening gehouden met <b>trends in autobezit</b>. Er is alleen rekening gehouden met het actuele autobezit.
             </p>
-            <p><b>Bezoekersparkeren</b>: Voor het aandeel bezoekersparkeren wordt in parkeerkengetallen 0,3
-                parkeerplaats per woning aangehouden. Dit aandeel wordt vaak ook een-op-een overgenomen in gemeentelijke
-                parkeernormen. Vanuit onderzoek komt het beeld naar voren te komen dat in (ook voor bezoekers) sterk
-                gereguleerde centrumgebieden met een lager aandeel zou kunnen worden volstaan. Ook andere overwegingen
-                zijn aanleiding om met name in centrumgebieden een lager aandeel dan 0,3 parkeerplaatsen per woning toe
-                te passen.
+            <p><b>Bezoekersparkeren</b>: Voor het aandeel bezoekersparkeren wordt in parkeerkengetallen 0,3 parkeerplaats per woning aangehouden. Dit aandeel wordt vaak ook een-op-een overgenomen in gemeentelijke parkeernormen. Vanuit onderzoek komt het
+                beeld naar voren te komen dat in (ook voor bezoekers) sterk gereguleerde centrumgebieden met een lager aandeel zou kunnen worden volstaan. Ook andere overwegingen zijn aanleiding om met name in centrumgebieden een lager aandeel dan 0,3
+                parkeerplaatsen per woning toe te passen.
             </p>
-            <p><b>Buurt</b>: Onderdeel van een gemeente, dat vanuit bebouwingsoogpunt of sociaaleconomische structuur
-                homogeen is afgebakend. Homogeen wil zeggen dat één functie dominant is, bijvoorbeeld woonfunctie
-                (woongebied), werkfunctie (industriegebied) of recreatieve functie (natuurgebied). Functies kunnen
-                echter ook gemengd voorkomen. CBS stelt buurtcodes vast in het kader van de landelijke coördinatie van
-                de wijk- en buurtindeling van gemeenten. Alle buurten hebben een unieke CBS-code. De code voor de buurt
-                wordt gevormd door acht cijfers met daaraan voorafgaand de letters ‘BU’. Bijv. BU00030102 betekent buurt
-                02 in wijk 01 van gemeente 0003.
+            <p><b>Buurt</b>: Onderdeel van een gemeente, dat vanuit bebouwingsoogpunt of sociaaleconomische structuur homogeen is afgebakend. Homogeen wil zeggen dat één functie dominant is, bijvoorbeeld woonfunctie (woongebied), werkfunctie (industriegebied)
+                of recreatieve functie (natuurgebied). Functies kunnen echter ook gemengd voorkomen. CBS stelt buurtcodes vast in het kader van de landelijke coördinatie van de wijk- en buurtindeling van gemeenten. Alle buurten hebben een unieke CBS-code.
+                De code voor de buurt wordt gevormd door acht cijfers met daaraan voorafgaand de letters ‘BU’. Bijv. BU00030102 betekent buurt 02 in wijk 01 van gemeente 0003.
             </p>
-            <p><b>Eigendomssituatie</b>: Voor een passende parkeernorm wordt voor wat betreft eigendomssituatie
-                onderscheid gemaakt naar ‘koopwoning’, ‘particuliere huurwoning’ en ‘sociale huurwoning’.
+            <p><b>Eigendomssituatie</b>: Voor een passende parkeernorm wordt voor wat betreft eigendomssituatie onderscheid gemaakt naar ‘koopwoning’, ‘particuliere huurwoning’ en ‘sociale huurwoning’.
             </p>
             <p><b>Parkeerkengetal, bewerkt</b>: Voor een gekozen <b>woningtypen</b> wordt naar <b>ligging</b> en
-                <b>locatie</b> de vergelijking gemaakt met een gemiddeld parkeerkengetal voor het betreffende
-                woningtype. Dit parkeerkengetal is afkomstig uit een eigen bewerking van Goudappel van
-                CROW-parkeerkengetallen. Deze bewerking is gedaan omdat de woningtypen die onderscheiden zijn ten
-                behoeve van passende parkeernorm.nl niet een-op-een vergelijkbaar zijn met de de woningtypen die
-                onderscheiden worden door CROW. Ook is het parkeerkengetal exclusief het bezoekersaandeel van 0,3
+                <b>locatie</b> de vergelijking gemaakt met een gemiddeld parkeerkengetal voor het betreffende woningtype. Dit parkeerkengetal is afkomstig uit een eigen bewerking van Goudappel van CROW-parkeerkengetallen. Deze bewerking is gedaan omdat
+                de woningtypen die onderscheiden zijn ten behoeve van passende parkeernorm.nl niet een-op-een vergelijkbaar zijn met de de woningtypen die onderscheiden worden door CROW. Ook is het parkeerkengetal exclusief het bezoekersaandeel van 0,3
                 parkeerplaats per woning.
             </p>
-            <p><b>Parkeerkengetal, CROW</b>: Een CROW-parkeerkengetal is een hulpmiddel om een orde van grootte uit te
-                rekenen voor het aantal aan te leggen parkeerplaatsen bij het realiseren van een bepaalde functie of
-                voorziening. Deze cijfers zijn gebaseerd op praktijk- of literatuurgegevens of onderbouwde bewerkingen
-                hiervan. In Nederland worden deze gepubliceerd door het kennisinstituut voor infrastructuur, openbare
-                ruimte en verkeer en vervoer CROW (oorspronkelijk een afkorting voor Centrum voor Regelgeving en
-                Onderzoek in de Grond-, Water- en Wegenbouw en de Verkeerstechniek).
+            <p><b>Parkeerkengetal, CROW</b>: Een CROW-parkeerkengetal is een hulpmiddel om een orde van grootte uit te rekenen voor het aantal aan te leggen parkeerplaatsen bij het realiseren van een bepaalde functie of voorziening. Deze cijfers zijn gebaseerd
+                op praktijk- of literatuurgegevens of onderbouwde bewerkingen hiervan. In Nederland worden deze gepubliceerd door het kennisinstituut voor infrastructuur, openbare ruimte en verkeer en vervoer CROW (oorspronkelijk een afkorting voor Centrum
+                voor Regelgeving en Onderzoek in de Grond-, Water- en Wegenbouw en de Verkeerstechniek).
             </p>
-            <p><b>Gemeente</b>: Nederland telt een groot aantal regionale indelingen, ook wel gebiedsindelingen genoemd.
-                Een gemeente houdt zich bezig met zaken die rechtstreeks en uitsluitend van belang zijn voor de eigen
-                inwoners. Een gemeente is, na de Rijksoverheid en de Nederlandse provincies, de derde bestuurslaag in
-                het Nederlandse staatsbestel. De belangrijkste bestuurlijke, statistische en onderwerpgerichte regionale
-                indelingen worden door het Centraal Bureau voor de Statistiek (CBS) bijgehouden. CBS stelt ook
-                gemeentecodes vast. Alle gemeenten hebben een unieke CBS-code. De CBS-code voor een gemeente wordt
-                gevormd door vier cijfers met daaraan voorafgaand de letters ‘GM’.
+            <p><b id="Gemeente">Gemeente</b>: Nederland telt een groot aantal regionale indelingen, ook wel gebiedsindelingen genoemd. Een gemeente houdt zich bezig met zaken die rechtstreeks en uitsluitend van belang zijn voor de eigen inwoners. Een gemeente
+                is, na de Rijksoverheid en de Nederlandse provincies, de derde bestuurslaag in het Nederlandse staatsbestel. De belangrijkste bestuurlijke, statistische en onderwerpgerichte regionale indelingen worden door het Centraal Bureau voor de
+                Statistiek (CBS) bijgehouden. CBS stelt ook gemeentecodes vast. Alle gemeenten hebben een unieke CBS-code. De CBS-code voor een gemeente wordt gevormd door vier cijfers met daaraan voorafgaand de letters ‘GM’.
             </p>
-            <p><b>Ligging</b>: Met ‘ligging’ wordt op passendeparkeernorm.nl geduid of een geselecteerde buurt binnen of
-                buiten de bebouwde kom gelegen is. Bij een buurt buiten de bebouwde kom wordt voor de betreffende buurt
-                het autobezit van de typen woningen vergeleken met een waarde (afgeleid) van landelijke kengetallen voor
-                het ‘buitengebied’. Wees er van bewust dat in het kader van de ruimtelijke ordening geen doorslaggevende
-                betekenis toegekend hoeft te worden aan de verkeerstechnische invulling van het begrip bebouwde kom in
-                de zin van de Wegenverkeerswet, maar eerder aan de feitelijke situatie en de aard van de omgeving.
+            <p><b>Ligging</b>: Met ‘ligging’ wordt op passendeparkeernorm.nl geduid of een geselecteerde buurt binnen of buiten de bebouwde kom gelegen is. Bij een buurt buiten de bebouwde kom wordt voor de betreffende buurt het autobezit van de typen woningen
+                vergeleken met een waarde (afgeleid) van landelijke kengetallen voor het ‘buitengebied’. Wees er van bewust dat in het kader van de ruimtelijke ordening geen doorslaggevende betekenis toegekend hoeft te worden aan de verkeerstechnische
+                invulling van het begrip bebouwde kom in de zin van de Wegenverkeerswet, maar eerder aan de feitelijke situatie en de aard van de omgeving.
             </p>
-            <p><b>Locatie</b>: Met ‘locatie’ (ook wel ‘stedelijke zone’ genoemd) wordt voor een gebied het gecombineerde
-                effect van de fysieke plek van het gebied en het aanbod en de kwaliteit van de verschillende
-                vervoerswijzen op de vraag naar parkeerplaatsen geduid. Veelal wordt onderscheid gemaakt naar ‘centrum’,
-                ‘schil/overloopgebied van het centrum’, ‘rest bebouwde kom’ en buitengebied’.
+            <p><b>Locatie</b>: Met ‘locatie’ (ook wel ‘stedelijke zone’ genoemd) wordt voor een gebied het gecombineerde effect van de fysieke plek van het gebied en het aanbod en de kwaliteit van de verschillende vervoerswijzen op de vraag naar parkeerplaatsen
+                geduid. Veelal wordt onderscheid gemaakt naar ‘centrum’, ‘schil/overloopgebied van het centrum’, ‘rest bebouwde kom’ en buitengebied’.
             </p>
-            <p><b>Parkeerdruk</b>: De parkeerdruk is de het aantal geparkeerde auto’s gedeeld door de parkeercapaciteit
-                (het aantal parkeerplaatsen dat voor auto’s beschikbaar is). Het aantal parkeerplaatsen dat bezet is ten
-                opzichte van het totaal aantal aanwezige parkeerplaatsen.
+            <p><b>Parkeerdruk</b>: De parkeerdruk is de het aantal geparkeerde auto’s gedeeld door de parkeercapaciteit (het aantal parkeerplaatsen dat voor auto’s beschikbaar is). Het aantal parkeerplaatsen dat bezet is ten opzichte van het totaal aantal
+                aanwezige parkeerplaatsen.
             </p>
-            <p><b>Parkeernorm</b>: Een parkeernorm geeft het aantal parkeerplaatsen aan dat moet worden aangelegd bij
-                het realiseren van een bepaalde functie of voorziening (al dan niet met een onder- en bovengrens). Een
-                parkeernorm is een instrument op het gewenste ruimtelijke beleid te realiseren. Gemeenten stellen zelf
-                parkeernormen vast. Soms zijn gemeentelijke parkeernomen gebaseerd op/afgeleid van landelijke
+            <p><b>Parkeernorm</b>: Een parkeernorm geeft het aantal parkeerplaatsen aan dat moet worden aangelegd bij het realiseren van een bepaalde functie of voorziening (al dan niet met een onder- en bovengrens). Een parkeernorm is een instrument op
+                het gewenste ruimtelijke beleid te realiseren. Gemeenten stellen zelf parkeernormen vast. Soms zijn gemeentelijke parkeernomen gebaseerd op/afgeleid van landelijke
                 <b>parkeerkengetallen</b>.
             </p>
-            <p><b>Private lease</b> Bij private lease betaalt een particulier een vast maandbedrag voor gebruik van een
-                auto zonder dat deze eigendom wordt. Behalve de brandstof, boetes en bijvoorbeeld schoonmaakkosten, zijn
-                alle autokosten inbegrepen. Aan het einde van de leaseperiode wordt de auto weer ingeleverd bij de
-                leasemaatschappij.
+            <p><b>Private lease</b> Bij private lease betaalt een particulier een vast maandbedrag voor gebruik van een auto zonder dat deze eigendom wordt. Behalve de brandstof, boetes en bijvoorbeeld schoonmaakkosten, zijn alle autokosten inbegrepen. Aan
+                het einde van de leaseperiode wordt de auto weer ingeleverd bij de leasemaatschappij.
             </p>
-            <p><b>Stedelijkheidsgraad</b>: De mate waarin mensen bij elkaar in de buurt wonen, uitgedrukt in
-                adressendichtheid per vierkante kilometer Het CBS hanteert vijf stedelijkheidsgraden ( ‘zeer sterk
-                stedelijk’, ‘sterk stedelijk’, ‘matig stedelijk’, ‘weinig stedelijk’ en ‘niet-stedelijk’). Deze zijn
-                gebaseerd op het aantal huisadressen per vierkante kilometer, ook wel omgevingsadressendichtheid
-                genoemd.
+            <p><b>Stedelijkheidsgraad</b>: De mate waarin mensen bij elkaar in de buurt wonen, uitgedrukt in adressendichtheid per vierkante kilometer Het CBS hanteert vijf stedelijkheidsgraden ( ‘zeer sterk stedelijk’, ‘sterk stedelijk’, ‘matig stedelijk’,
+                ‘weinig stedelijk’ en ‘niet-stedelijk’). Deze zijn gebaseerd op het aantal huisadressen per vierkante kilometer, ook wel omgevingsadressendichtheid genoemd.
             </p>
-            <p><b>Trend autobezit</b>: Bij het beoordelen van het actuele autobezit wordt aangeraden om de trend in
-                autobezit in wijk of buurt mee te wegen. Dit kan van belang zijn bij bijvoorbeeld wijken waar er sprake
-                is van ‘verjonging’ van buurten of wijken, waardoor er meer tweeverdieners zijn gekomen die vaker twee
-                auto’s hebben of gezinnen die opgroeiende thuiswonende kinderen hebben, die een eigen auto gaan rijden.
-                Hierdoor kan het toekomstige autobezit mogelijk afwijken van het huidige autobezit.
+            <p><b>Trend autobezit</b>: Bij het beoordelen van het actuele autobezit wordt aangeraden om de trend in autobezit in wijk of buurt mee te wegen. Dit kan van belang zijn bij bijvoorbeeld wijken waar er sprake is van ‘verjonging’ van buurten of
+                wijken, waardoor er meer tweeverdieners zijn gekomen die vaker twee auto’s hebben of gezinnen die opgroeiende thuiswonende kinderen hebben, die een eigen auto gaan rijden. Hierdoor kan het toekomstige autobezit mogelijk afwijken van het
+                huidige autobezit.
             </p>
             <p><b>Type woningen</b>: Zie ‘Woningtype’.
             </p>
-            <p><b>Wijk</b>: Onderdeel van een gemeente waarin een bepaalde vorm van bodemgebruik of bebouwing
-                overheerst. Bijvoorbeeld: industriegebied, woongebied met hoogbouw of laagbouw. Een wijk bestaat uit één
-                of meerdere buurten. CBS stelt wijkcodes vast in het kader van de landelijke coördinatie van de wijk- en
-                buurtindeling van gemeenten. Alle wijken hebben een unieke CBS-code. De code voor een wijk binnen een
-                gemeente wordt gevormd door zes cijfers met daaraan voorafgaand de letters ‘WK’. De eerste vier cijfers
-                refereren naar de gemeentecode. WK000301 bijvoorbeeld betekent wijk 01 in gemeente 0003;
+            <p><b>Wijk</b>: Onderdeel van een gemeente waarin een bepaalde vorm van bodemgebruik of bebouwing overheerst. Bijvoorbeeld: industriegebied, woongebied met hoogbouw of laagbouw. Een wijk bestaat uit één of meerdere buurten. CBS stelt wijkcodes
+                vast in het kader van de landelijke coördinatie van de wijk- en buurtindeling van gemeenten. Alle wijken hebben een unieke CBS-code. De code voor een wijk binnen een gemeente wordt gevormd door zes cijfers met daaraan voorafgaand de letters
+                ‘WK’. De eerste vier cijfers refereren naar de gemeentecode. WK000301 bijvoorbeeld betekent wijk 01 in gemeente 0003;
             </p>
-            <p><b>Woningtype</b>: Voor een passende parkeernorm wordt voor wat betreft woningtype onderscheid gemaakt
-                naar ‘vrijstaande woning’, ‘twee-onder-een-kap’, ‘rijwoning’, ‘meergezinswoning (laagbouw)’ en
-                ‘meergezinswoning (hoogbouw)’. Aanvullend wordt binnen deze indeling rekening gehouden met de
+            <p><b>Woningtype</b>: Voor een passende parkeernorm wordt voor wat betreft woningtype onderscheid gemaakt naar ‘vrijstaande woning’, ‘twee-onder-een-kap’, ‘rijwoning’, ‘meergezinswoning (laagbouw)’ en ‘meergezinswoning (hoogbouw)’. Aanvullend
+                wordt binnen deze indeling rekening gehouden met de
                 <b>eigendomssituatie</b>. Hierdoor ontstaan uiteindelijk 15 woningtypen.
             </p>
         </div>
@@ -495,8 +398,7 @@
         <div style="width: fit-content; display: inline-block; padding: 0 20px;">
             <img class="profileImg" src="img\erik.JPG" alt="Erik Timmermans">
             <div class="profileInfo">
-                <b>Senior adviseur Parkeren & Locatieontwikkeling</b> <br>
-                ing. R. (Robert) Ruisch <br>
+                <b>Senior adviseur Parkeren & Locatieontwikkeling</b> <br> ing. R. (Robert) Ruisch <br>
                 <a class="linkColor" href="tel:+31 (0)6 22 80 81 85">+31 (0)6 22 80 81 85</a><br>
                 <a href="mailto:rruisch@goudappel.nl?subject=Uitstoot_van_Mobiliteit">rruisch@goudappel.nl</a>
                 <br>
@@ -505,8 +407,7 @@
         <div style="width: fit-content; display: inline-block;">
             <img class="profileImg" src="img\erik.JPG" alt="Erik Timmermans">
             <div class="profileInfo">
-                <b>Senior adviseur</b> <br>
-                ing. F.A. (Frank) Aalbers <br>
+                <b>Senior adviseur</b> <br> ing. F.A. (Frank) Aalbers <br>
                 <a class="linkColor" href="tel:+31 (0)6 22 18 51 66">+31 (0)6 22 18 51 66</a><br>
                 <a href="mailto:faalbers@goudappel.nl?subject=Uitstoot_van_Mobiliteit">faalbers@goudappel.nl</a>
                 <br>
@@ -524,8 +425,7 @@
                 <h3>Centrum</h3>
                 <h3>Brink</h3>
                 <form action="">
-                    <label for="">locatie:</label><svg class="infoBtn" onclick="menuSelect(3)"
-                        style="color: grey; width:20px;height:20px" viewBox="0 0 24 24">
+                    <label for="">locatie:</label><svg class="infoBtn" onclick="menuSelect(3)" style="color: grey; width:20px;height:20px" viewBox="0 0 24 24">
                         <path fill="currentColor"
                             d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z" />
                     </svg><br>
@@ -535,8 +435,7 @@
                     </select>
                 </form>
                 <form action="">
-                    <label for="">Ligging:</label><svg class="infoBtn" onclick="menuSelect(3)"
-                        style="color: grey; width:20px;height:20px" viewBox="0 0 24 24">
+                    <label for="">Ligging:</label><svg class="infoBtn" onclick="menuSelect(3)" style="color: grey; width:20px;height:20px" viewBox="0 0 24 24">
                         <path fill="currentColor"
                             d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z" />
                     </svg><br>
@@ -548,8 +447,7 @@
                     </select>
                 </form>
                 <form action="">
-                    <label for="">Steedelijkheidsgraad:</label><svg class="infoBtn" onclick="menuSelect(3)"
-                        style="color: grey; width:20px;height:20px" viewBox="0 0 24 24">
+                    <label for="">Steedelijkheidsgraad:</label><svg class="infoBtn" onclick="menuSelect(3)" style="color: grey; width:20px;height:20px" viewBox="0 0 24 24">
                         <path fill="currentColor"
                             d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z" />
                     </svg><br>
@@ -601,14 +499,12 @@
                         <option value="app_laag_huur"> appartement laagbouw (particuliere huurwoning) </option>
                         <option value="app_laag_social"> appartement laagbouw (sociale huurwoning) </option>
                     </select>
-                    <svg class="infoBtn" onclick="menuSelect(3)" style="color: grey; width:20px;height:20px"
-                        viewBox="0 0 24 24">
+                    <svg class="infoBtn" onclick="menuSelect(3)" style="color: grey; width:20px;height:20px" viewBox="0 0 24 24">
                         <path fill="currentColor"
                             d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z" />
                     </svg>
                 </form>
-                <svg id="diagram" width="1077px" height="460px" viewBox="0 0 1077 460" version="1.1"
-                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <svg id="diagram" width="1077px" height="460px" viewBox="0 0 1077 460" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                         <g id="Kaart-Copy-2" transform="translate(-606.000000, -312.000000)">
                             <g id="diagram" transform="translate(606.000000, 312.000000)">
@@ -632,7 +528,7 @@
                                     </rect>
                                     <text id="Verglijkbare-buurten" font-family="ArialMT, Arial" font-size="18"
                                         font-weight="normal" letter-spacing="1.6416" fill="#000000">
-                                        <tspan x="126.033219" y="16">Verglijkbare buurten</tspan>
+                                        <tspan x="126.033219" y="16">Vergelijkbare buurten</tspan>
                                     </text>
                                     <g id="Group-3" transform="translate(0.000000, 45.000000)">
                                         <rect id="Rectangle-Copy-6" fill="#9FC077" x="0" y="0" width="86" height="30"
@@ -647,7 +543,7 @@
                                     <rect id="wijk-bar" fill="#D9B74A" x="126" y="23" width="350" height="73"></rect>
                                     <text id="Betrefende-wijk" font-family="ArialMT, Arial" font-size="18"
                                         font-weight="normal" letter-spacing="1.6416" fill="#000000">
-                                        <tspan x="126.155773" y="16">Betrefende wijk</tspan>
+                                        <tspan x="126.155773" y="16">Betreffende wijk</tspan>
                                     </text>
                                     <g id="Group-9" transform="translate(0.000000, 45.000000)">
                                         <rect id="Rectangle-Copy-7" fill="#D9B74A" x="0" y="0" width="86" height="30"
@@ -670,7 +566,7 @@
                                     <text id="landelijk-kerngetal" font-family="ArialMT, Arial" font-size="18"
                                         font-weight="normal" letter-spacing="2.68625474" fill="#000000">
                                         <tspan x="51" y="435">landelijk</tspan>
-                                        <tspan x="51" y="455">kerngetal</tspan>
+                                        <tspan x="51" y="455">kengetal</tspan>
                                     </text>
                                     <path d="M43,36.4221144 L43,467" id="kerngetal-lijn" stroke="#979797"
                                         stroke-width="2" stroke-dasharray="9"></path>
@@ -718,50 +614,34 @@
             <!-- <p style="margin-top: 0; text-align: center;">Van onnodige parkeerplaats naar betaalbare woning!</p> -->
             <b>Vergelijking autobezit - parkeerkengetal</b><br>
             <p>
-                U heeft het autobezit van bewoners van het woningtype [in te vullen, woningtype] in de buurt [in te
-                vullen, buurtnaam] in de gemeente [in te vullen, gemeentenaam] vergeleken met het aantal parkeerplaatsen
-                berekend op basis van een parkeerkengetal. U heeft hierbij aangegeven dat de buurt [in te vullen,
-                binnen/buiten] de bebouwde kom ligt en gekarakteriseerd kan worden als [in te vullen, ligging].
+                U heeft het autobezit van bewoners van het woningtype [in te vullen, woningtype] in de buurt [in te vullen, buurtnaam] in de gemeente [in te vullen, gemeentenaam] vergeleken met het aantal parkeerplaatsen berekend op basis van een parkeerkengetal. U heeft
+                hierbij aangegeven dat de buurt [in te vullen, binnen/buiten] de bebouwde kom ligt en gekarakteriseerd kan worden als [in te vullen, ligging].
             </p>
             <p>
-                Uit de vergelijking komt naar voren dat er [in te vullen, een (zeer) sterke indicatie/een indicatie/geen
-                indicatie is dat het autobezit in de buurt [in te vullen: lager/hoger/hoger of lager] is dan het aantal
-                parkeerplaatsen dat aangelegd zou moeten worden volgens het parkeerkengetal.
+                Uit de vergelijking komt naar voren dat er [in te vullen, een (zeer) sterke indicatie/een indicatie/geen indicatie is dat het autobezit in de buurt [in te vullen: lager/hoger/hoger of lager] is dan het aantal parkeerplaatsen dat aangelegd zou moeten worden
+                volgens het parkeerkengetal.
             </p>
 
             <b>Bezoekersaandeel in parkeernorm</b><br>
             <p>
-                U heeft het autobezit van bewoners van het woningtype [in te vullen, woningtype] in de buurt [in te
-                vullen, buurtnaam] in de gemeente [in te vullen, gemeentenaam] vergeleken met het aantal parkeerplaatsen
-                berekend op basis van een parkeerkengetal. Beide waarde zijn exclusief parkeerplaatsen voor bezoekers.
-                Voor dit [bezoekersparkeren] wordt (te) vaak zonder onderbouwing het kengetal van 0,3 parkeerplaats per
-                woning aangehouden.
+                U heeft het autobezit van bewoners van het woningtype [in te vullen, woningtype] in de buurt [in te vullen, buurtnaam] in de gemeente [in te vullen, gemeentenaam] vergeleken met het aantal parkeerplaatsen berekend op basis van een parkeerkengetal. Beide
+                waarde zijn exclusief parkeerplaatsen voor bezoekers. Voor dit [bezoekersparkeren] wordt (te) vaak zonder onderbouwing het kengetal van 0,3 parkeerplaats per woning aangehouden.
             </p>
             <p>
-                De gebruikte combinatie van stedelijkheid en locatie (stedelijke zone), [in te vullen, stedelijkheid] en
-                [in te vullen, locatie], geeft de indicatie dat het aandeel voor bezoekersparkeren [in te vullen,
-                mogelijk/niet of slechts zeer beperkt] te reduceren zou zijn[in te vullen,./ tot mogelijk 0,1/ tot
-                mogelijk 0,2]. [in te vullen indien mogelijke reductie: Mogelijk kan het overblijvende bezoekersdeel dan
-                ook nog (voor een deel) opgevangen worden binnen de middels een parkeerbalans aantoonbaar beschikbare
-                parkeercapaciteit.]
+                De gebruikte combinatie van stedelijkheid en locatie (stedelijke zone), [in te vullen, stedelijkheid] en [in te vullen, locatie], geeft de indicatie dat het aandeel voor bezoekersparkeren [in te vullen, mogelijk/niet of slechts zeer beperkt] te reduceren
+                zou zijn[in te vullen,./ tot mogelijk 0,1/ tot mogelijk 0,2]. [in te vullen indien mogelijke reductie: Mogelijk kan het overblijvende bezoekersdeel dan ook nog (voor een deel) opgevangen worden binnen de middels een parkeerbalans aantoonbaar
+                beschikbare parkeercapaciteit.]
             </p>
 
             Nadere verfijning op basis van beschikbare data is mogelijk
             <br>
+            <br> leeftijd huishouden
             <br>
-            leeftijd huishouden
+            <br> omvang huishouden
             <br>
+            <br> effect van deelmobiliteit
             <br>
-
-            omvang huishouden
-            <br>
-            <br>
-
-            effect van deelmobiliteit
-            <br>
-            <br>
-
-            bezoekersdeel binnen de parkeernorm
+            <br> bezoekersdeel binnen de parkeernorm
 
         </div>
 
@@ -773,15 +653,13 @@
     <!-- Javascript -->
     <script src="index.js"></script>
     <script>
-        map.on('load', function () { // When mapbox is ready
-            map.on('mousemove', 'buurt-2020-v1-0-0vrvzi', function (e) { // mouse moves over area
+        map.on('load', function() { // When mapbox is ready
+            map.on('mousemove', 'buurt-2020-v1-0-0vrvzi', function(e) { // mouse moves over area
                 map.getCanvas().style.cursor = 'pointer'; // make mouse a pointer
                 var BUCODE = e.features[0].properties["BU_CODE"]; // GEt BU_CODE from map data
                 var fitler = [ // Make a filter that uses this BU_CODE
-                    "all",
-                    [
-                        "match",
-                        ["get", "BU_CODE"], // Select variable
+                    "all", [
+                        "match", ["get", "BU_CODE"], // Select variable
                         [BUCODE], // match the correct BU_CODE
                         true,
                         false
@@ -789,14 +667,12 @@
                 ];
                 map.setFilter('buurt-slect', fitler); // Set the Filter to the layer that displays selection
             });
-            map.on('mouseleave', 'buurt-2020-v1-0-0vrvzi', function () { // Whe mouse not on area layer
+            map.on('mouseleave', 'buurt-2020-v1-0-0vrvzi', function() { // Whe mouse not on area layer
                 map.getCanvas().style.cursor = ''; // use not pointer
                 var fitler = [ // Make a filter that uses this BU_CODE
-                    "all",
-                    [
-                        "match",
-                        ["get", "BU_CODE"], // Select variable
-                        [""],  // no match
+                    "all", [
+                        "match", ["get", "BU_CODE"], // Select variable
+                        [""], // no match
                         true,
                         false
                     ]
@@ -804,7 +680,7 @@
                 map.setFilter('buurt-slect', fitler); // Set the Filter to the layer that displays selection
 
             });
-            map.on('click', 'buurt-2020-v1-0-0vrvzi', function (e) {
+            map.on('click', 'buurt-2020-v1-0-0vrvzi', function(e) {
                 var BUCODE = e.features[0].properties["BU_CODE"]; // GEt BU_CODE from map data
                 newSelection(BUCODE);
             });

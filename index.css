@@ -8,15 +8,27 @@ body {
     background: #fff;
 }
 
+p b.linkToIntern {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#logobox {
+    top: 10px;
+    left: 10px;
+    width: 200px;
+    z-index: 10;
+    position: fixed;
+    background: rgba(255, 255, 255, 0.95);
+    height: 2.5em;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 5px;
+}
 
 #logo {
-    top: 13px;
-    left: 5px;
-    /* max-width: 10vw; */
-    height: 40px;
+    height: 38px;
     width: 200px;
-    z-index: 1;
-    position: fixed;
+    margin-top: 4px;
 }
 
 #map {
@@ -33,7 +45,8 @@ body {
     filter: blur(5px) grayscale(60%);
 }
 
-.menuPannel, .menuPannel * {
+.menuPannel,
+.menuPannel * {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -48,14 +61,15 @@ body {
 .menuPannel {
     display: block;
     width: 100%;
-    max-width: 50em;
+    max-width: 30em;
     margin: 10px auto;
     height: 2.5em;
     font-size: 10pt;
     border-radius: 10px;
-    background: rgb(254, 254, 254);
+    background: rgba(255, 255, 255, 0.85);
     box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 5px;
     position: relative;
+    z-index: 10;
 }
 
 .menuPannel a {
@@ -65,7 +79,7 @@ body {
     line-height: 2.5em;
     color: #222;
     position: relative;
-    z-index: 500;
+    z-index: 20;
     cursor: pointer;
     /* transition: all 0.2s ease-in-out; */
     text-decoration: none;
@@ -86,7 +100,7 @@ body {
     border-radius: 10px;
     position: absolute;
     top: 0;
-    z-index: 250;
+    z-index: 15;
     /* transition: left 0.2s ease-in-out; */
 }
 
@@ -110,17 +124,24 @@ body {
     background-image: linear-gradient(-143deg, #FF4C76 0%, #D90057 100%);
     box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.27);
     border-radius: 10px;
-    max-width: 1000px;
+    /* max-width: 1000px;
     max-height: 500px;
     width: 80vw;
-    /* height: 80vh; */
-    z-index: 1000;
-    position: fixed;
+    height: 80vh; */
+    z-index: 50;
+    /* position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
     overflow: auto;
-    padding: 25px 50px 25px 50px;
+    padding: 3vw 6vw;
+    position: fixed;
+    top: 60px;
+    /* bottom: 50px; */
+    left: 10vw;
+    right: 10vw;
+    max-height: 70vh;
+    max-height: calc(100vh - 200px);
 }
 
 .content-pannel .title {
@@ -170,7 +191,7 @@ body {
     border-radius: 10px;
     /* padding: 25px; */
     box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.27);
-    z-index: 2000;
+    z-index: 100;
 }
 
 #selectionPannel .info {
@@ -235,6 +256,23 @@ body {
     color: white;
 }
 
+#closeOnClick {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 5;
+}
+
+.mapboxgl-ctrl-geocoder {
+    height: 40px !important;
+    border-radius: 10px !important;
+    padding-top: 2px;
+    padding-left: 2px;
+    background: rgba(255, 255, 255, 0.95) !important;
+}
 
 @media (min-width: 500px) {
     .menuPannel {
@@ -242,17 +280,27 @@ body {
     }
 }
 
-@media only screen and (max-width: 1330px) {
-    #logo {
+@media only screen and (max-width: 1000px) {
+    #logobox {
         bottom: 5px;
         top: unset;
+        z-index: 1;
     }
     .mapboxgl-ctrl-top-right {
-        top: 50px !important;
+        top: unset !important;
+        bottom: 10px !important;
+        z-index: 9 !important;
     }
+    /* .mapboxgl-ctrl-geocoder {
+        width: 33.3333% !important;
+        height: 36px !important;
+        font-size: 15px !important;
+        line-height: 20px !important;
+        max-width: 360px !important;
+    } */
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 500px) {
     .menuPannel {
         margin: 10px;
         width: unset;

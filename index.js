@@ -11,11 +11,11 @@ var map = new mapboxgl.Map({
 // $(document).ready(function(){
 // });
 
-var coordinatesGeocoder = function (query) {
+var coordinatesGeocoder = function(query) {
     /* Given a query in the form "lng, lat" or "lat, lng"
-    * returns the matching geographic coordinate(s)
-    * as search results in carmen geojson format,
-    * https://github.com/mapbox/carmen/blob/master/carmen-geojson.md */
+     * returns the matching geographic coordinate(s)
+     * as search results in carmen geojson format,
+     * https://github.com/mapbox/carmen/blob/master/carmen-geojson.md */
 
     // Match anything which looks like
     // decimal degrees coordinate pair.
@@ -68,7 +68,7 @@ map.addControl( // Add the control to the map.
         accessToken: mapboxgl.accessToken,
         localGeocoder: coordinatesGeocoder,
         zoom: 4,
-        placeholder: 'Try: -40, 170',
+        placeholder: 'Postcode of gemeente',
         mapboxgl: mapboxgl
     })
 );
@@ -101,7 +101,7 @@ console.log(location.search
     .slice(1)
     .split('&')
     .map(p => p.split('='))
-    .reduce((obj, [key, value]) => ({ ...obj, [key]: value }), {}))
+    .reduce((obj, [key, value]) => ({...obj, [key]: value }), {}))
 
 
 function searchToObjectOLD() {
@@ -119,6 +119,7 @@ function searchToObjectOLD() {
 
     return obj;
 }
+
 function searchToObject() {
     var urlDataString = decodeURIComponent(window.location.search);
     if (urlDataString == "") { //note sure this is the right solution 
@@ -126,9 +127,9 @@ function searchToObject() {
     }
     urlDataString = "{\"" +
         urlDataString
-            .replace(/\?/gi, "")
-            .replace(/\&/gi, "\",\"")
-            .replace(/\=/gi, "\":\"") +
+        .replace(/\?/gi, "")
+        .replace(/\&/gi, "\",\"")
+        .replace(/\=/gi, "\":\"") +
         "\"}";
 
     urlObj = JSON.parse(urlDataString);
@@ -138,18 +139,20 @@ function searchToObject() {
     return urlObj;
 }
 
-function menuSelect(menuItem) {
+function menuSelect(menuItem, possition) {
     $(".menuItem").removeClass("active"); // make sure non menu item is slected
     $("#selectionPannel").removeClass("blured-map");
     $("#map").addClass("blured-map");
     // $(".content-pannel").addClass("hidden-content-pannel");
     $(".content-pannel").hide();
     $("#selectionPannel").hide();
+    $("#closeOnClick").hide();
 
     switch (menuItem) { // execute 
         case 1:
             $("#menu-1").addClass("active"); // select aproriat <a> element (menu item)
             $("#home").show();
+            $("#closeOnClick").show();
             break;
 
         case 2:
@@ -160,26 +163,36 @@ function menuSelect(menuItem) {
         case 3:
             $("#menu-3").addClass("active");
             $("#backgroundInfromation").show();
+            $("#closeOnClick").show();
+
             if (selectionBuCode == "") {
                 $("#selectieBtn").hide();
             } else {
                 $("#selectieBtn").show();
             }
+
+            if (possition != undefined) {
+                document.getElementById(possition).scrollIntoView();
+            }
+
             break;
 
         case 4:
             $("#menu-4").addClass("active");
             $("#contact").show();
+            $("#closeOnClick").show();
             break;
 
         case "gemeente":
             $("#menu-1").addClass("active");
             $("#gemeente").show();
+            $("#closeOnClick").show();
             break;
 
         case "ontwikkelaars":
             $("#menu-1").addClass("active");
             $("#ontwikkelaars").show();
+            $("#closeOnClick").show();
             break;
 
         case "selectie":
@@ -194,6 +207,7 @@ function menuSelect(menuItem) {
             newSelection()
             $("#uitkomsten").show();
             $("#selectionPannel").addClass("blured-map");
+            $("#closeOnClick").show();
             break;
 
 
@@ -209,6 +223,7 @@ function newSelection(BUCODE) {
     }
     $("#selectionPannel").show();
     $("#map").addClass("blured-map");
+    $("#closeOnClick").show();
 
     var shortBuCode = "" // remove the fluf and kee the part that helps disside what file to load
     switch (BUCODE) {
@@ -222,13 +237,13 @@ function newSelection(BUCODE) {
 
 
     var dropdownSlections = {
-        locatie: $("#selectionPannel > div.info > div > form:nth-child(4) > select").val(),
-        ligging: $("#selectionPannel > div.info > div > form:nth-child(5) > select").val(),
-        Steedelijkheidsgraad: $("#selectionPannel > div.info > div > form:nth-child(6) > select").val(),
-        type_wooning: $("#selectionPannel > div.data > div > form > select").val()
-    }
-    // console.log(dropdownSlections)
-    // console.log(BUCODE)
+            locatie: $("#selectionPannel > div.info > div > form:nth-child(4) > select").val(),
+            ligging: $("#selectionPannel > div.info > div > form:nth-child(5) > select").val(),
+            Steedelijkheidsgraad: $("#selectionPannel > div.info > div > form:nth-child(6) > select").val(),
+            type_wooning: $("#selectionPannel > div.data > div > form > select").val()
+        }
+        // console.log(dropdownSlections)
+        // console.log(BUCODE)
 
     // [ ] - Slect filte to load
     // [ ] - load data from json on server
@@ -288,6 +303,7 @@ function newSelection(BUCODE) {
     }
 
     setDiagramValues();
+
     function setDiagramValues() {
         $("#selectionPannel > div.info > div > h1").text(values.gemente_naam); // gemeente
         $("#selectionPannel > div.info > div > h3:nth-child(2)").text(values.wijk_naam); // wijk
@@ -314,4 +330,3 @@ function newSelection(BUCODE) {
         //X * 350 + 83
     }
 }
-
