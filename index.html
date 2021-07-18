@@ -427,7 +427,7 @@
                 <h1>Deventer</h1>
                 <h3>Centrum</h3>
                 <h3>Brink</h3>
-                <form action="">
+                <!-- <form action="">
                     <label for="">locatie:</label><svg class="infoBtn" onclick="menuSelect(3)" style="color: grey; width:20px;height:20px" viewBox="0 0 24 24">
                         <path fill="currentColor"
                             d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z" />
@@ -436,13 +436,13 @@
                         <option value="binBBKom">Binnen bebouwde kom</option>
                         <option value="buitBBKom">Buiten bebouwde kom</option>
                     </select>
-                </form>
+                </form> -->
                 <form action="">
                     <label for="">Ligging:</label><svg class="infoBtn" onclick="menuSelect(3)" style="color: grey; width:20px;height:20px" viewBox="0 0 24 24">
                         <path fill="currentColor"
                             d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z" />
                     </svg><br>
-                    <select name="" id="">
+                    <select name="" id="ligging">
                         <option value="centrum">Centrum</option>
                         <option value="schil">Schil centrum</option>
                         <option value="restBBKom">Rest bebouwde kom</option>
@@ -450,11 +450,11 @@
                     </select>
                 </form>
                 <form action="">
-                    <label for="">Steedelijkheidsgraad:</label><svg class="infoBtn" onclick="menuSelect(3)" style="color: grey; width:20px;height:20px" viewBox="0 0 24 24">
+                    <label for="">Stedelijkheidsgraad:</label><svg class="infoBtn" onclick="menuSelect(3)" style="color: grey; width:20px;height:20px" viewBox="0 0 24 24">
                         <path fill="currentColor"
                             d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z" />
                     </svg><br>
-                    <select name="" id="">
+                    <select name="" id="steedelijkheidsgraad">
                         <option value="zeer">1 - Zeer sterk stedelijk</option>
                         <option value="sterk">2 - Sterk stedelijk</option>
                         <option value="matig">3 - Matig stedelijk</option>
@@ -468,39 +468,24 @@
         <div class="data">
             <div class="center5050" style="text-align: center;">
                 <form action="">
-                    <label for="">Type wooning:</label>
-                    <select name="" id="">
+                    <label for="">Type woning:</label>
+                    <select name="" id="type_wooning">
 
-                        <!-- vrijstaande woning (koopwoning)
-                        vrijstaande woning (particuliere huurwoning)
-                        vrijstaande woning (sociale huurwoning)
-                        twee-onder-een-kap-woning (koopwoning)
-                        twee-onder-een-kap-woning (particuliere huurwoning)
-                        twee-onder-een-kap-woning (sociale huurwoning)
-                        rijwoning (koopwoning)
-                        rijwoning (particuliere huurwoning)
-                        rijwoning (sociale huurwoning)
-                        appartement hoogbouw (koopwoning)
-                        appartement hoogbouw (particuliere huurwoning)
-                        appartement hoogbouw (sociale huurwoning)
-                        appartement laagbouw (koopwoning)
-                        appartement laagbouw (particuliere huurwoning)
-                        appartement laagbouw (sociale huurwoning) -->
-                        <option value="vrij_koop"> vrijstaande woning (koopwoning) </option>
-                        <option value="vrij_huur"> vrijstaande woning (particuliere huurwoning) </option>
-                        <option value="vrij_social"> vrijstaande woning (sociale huurwoning) </option>
-                        <option value="twee_kap_koop"> twee-onder-een-kap-woning (koopwoning) </option>
-                        <option value="twee_kap_huur"> twee-onder-een-kap-woning (particuliere huurwoning) </option>
-                        <option value="twee_kap_social"> twee-onder-een-kap-woning (sociale huurwoning) </option>
-                        <option value="rij_koop"> rijwoning (koopwoning) </option>
-                        <option value="rij_huur"> rijwoning (particuliere huurwoning) </option>
-                        <option value="rij_social"> rijwoning (sociale huurwoning) </option>
-                        <option value="app_hoog_koop"> appartement hoogbouw (koopwoning) </option>
-                        <option value="app_hoog_huur"> appartement hoogbouw (particuliere huurwoning) </option>
-                        <option value="app_hoog_social"> appartement hoogbouw (sociale huurwoning) </option>
-                        <option value="app_laag_koop"> appartement laagbouw (koopwoning) </option>
-                        <option value="app_laag_huur"> appartement laagbouw (particuliere huurwoning) </option>
-                        <option value="app_laag_social"> appartement laagbouw (sociale huurwoning) </option>
+                        <option value="aapbw_koop_vrijst" selected="selected"> vrijstaande woning (koopwoning) </option>
+                        <option value="aapbw_part_huur_vrijst"> vrijstaande woning (particuliere huurwoning) </option>
+                        <option value="aapbw_soc_huur_vrijst"> vrijstaande woning (sociale huurwoning) </option>
+                        <option value="aapbw_koop_tweekap"> twee-onder-een-kap-woning (koopwoning) </option>
+                        <option value="aapbw_part_huur_tweekap"> twee-onder-een-kap-woning (particuliere huurwoning) </option>
+                        <option value="aapbw_soc_huur_tweekap"> twee-onder-een-kap-woning (sociale huurwoning) </option>
+                        <option value="aapbw_koop_rijwoni"> rijwoning (koopwoning) </option>
+                        <option value="aapbw_part_huur_rijwoni"> rijwoning (particuliere huurwoning) </option>
+                        <option value="aapbw_soc_huur_rijwoni"> rijwoning (sociale huurwoning) </option>
+                        <option value="aapbw_koop_meergez_hoogb"> appartement hoogbouw (koopwoning) </option>
+                        <option value="aapbw_part_meergez_hoogb"> appartement hoogbouw (particuliere huurwoning) </option>
+                        <option value="aapbw_soc_huur_meergez_hoogb"> appartement hoogbouw (sociale huurwoning) </option>
+                        <option value="aapbw_koop_meergez_laagb"> appartement laagbouw (koopwoning) </option>
+                        <option value="aapbw_part_meergez_laagb"> appartement laagbouw (particuliere huurwoning) </option>
+                        <option value="aapbw_soc_huur_meergez_laagb"> appartement laagbouw (sociale huurwoning) </option>
                     </select>
                     <svg class="infoBtn" onclick="menuSelect(3)" style="color: grey; width:20px;height:20px" viewBox="0 0 24 24">
                         <path fill="currentColor"
@@ -568,7 +553,7 @@
                                     </g>
                                     <text id="landelijk-kerngetal" font-family="ArialMT, Arial" font-size="18"
                                         font-weight="normal" letter-spacing="2.68625474" fill="#000000">
-                                        <tspan x="51" y="435">landelijk</tspan>
+                                        <tspan x="51" y="435">gemiddeld</tspan>
                                         <tspan x="51" y="455">kengetal</tspan>
                                     </text>
                                     <path d="M43,36.4221144 L43,467" id="kerngetal-lijn" stroke="#979797"

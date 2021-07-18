@@ -1,5 +1,5 @@
 var selectionBuCode = "";
-var data;
+var dataAlles;
 var dataIsReadyBol = false;
 var dataIndex = [];
 
@@ -7,7 +7,7 @@ var dataIndex = [];
 $.get("https://raw.githubusercontent.com/daanvr/passende-parkeernorm/main/extra/data.csv", function(CSVdata) {
     // CSVdata is populated with the file contents
     // ready to be converted into an Array
-    data = $.csv.toArrays(CSVdata);
+    dataAlles = $.csv.toArrays(CSVdata);
     dataIsReadyBol = true;
     dataIsReady();
 });
@@ -15,9 +15,9 @@ $.get("https://raw.githubusercontent.com/daanvr/passende-parkeernorm/main/extra/
 
 
 function dataIsReady() {
-    console.log(data)
-    for (i in data) {
-        dataIndex.push(data[i][0])
+    console.log(dataAlles)
+    for (i in dataAlles) {
+        dataIndex.push(dataAlles[i][0])
     }
     if (selectionBuCode != "") {
         newSelection()
@@ -30,7 +30,7 @@ var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/goudappel/ckp7wx0xi47ir17l1pmz0tc1x',
     center: [5.922896, 51.975716],
-    zoom: 8
+    zoom: 10
 });
 
 // $(document).ready(function(){
@@ -243,32 +243,42 @@ function menuSelect(menuItem, possition) {
 
 
 function newSelection(BUCODE) {
+    var data = {};
     if (BUCODE != undefined) {
         selectionBuCode = BUCODE;
     }
 
 
     function selectData(code) {
-        return data[dataIndex.indexOf(selectionBuCode)]
+        return dataAlles[dataIndex.indexOf(code)]
     }
 
-    var buurtCode = jQuery.extend({}, BUCODE);
-    var wijkCode = jQuery.extend({}, BUCODE);
-    var gemCode = jQuery.extend({}, BUCODE);
+    console.log(BUCODE)
 
-    // buurtCode = BUCODE.clone();
-    // wijkCode = BUCODE.clone().replace("BU", "WK");
-    // gemCode = BUCODE.clone().replace("BU", "GM");
+    var buurtCode = JSON.parse(JSON.stringify(BUCODE));
+    var buurtCodeVerglijk = JSON.parse(JSON.stringify(BUCODE));
+    var wijkCode = JSON.parse(JSON.stringify(BUCODE));
+    var gemCode = JSON.parse(JSON.stringify(BUCODE));
 
-    console.log(buurtCode)
-    console.log(wijkCode)
-    console.log(gemCode)
+    data.buurt = selectData(buurtCode)
 
-    buurtData = selectData(code)
+    wijkCode = wijkCode.replace("BU", "WK").slice(0, 8);
+    gemCode = gemCode.replace("BU", "GM").slice(0, 6);
 
-    // Buurt data = buDa
-    buDa = data[dataIndex.indexOf(selectionBuCode)];
-    console.log(buDa)
+    buurtCodeVerglijk = wijkCode.replace("BU", "LI").slice(0, 7);
+    buurtCodeVerglijk += data.buurt[8];
+
+    // console.log(buurtCode)
+    // console.log(buurtCodeVerglijk)
+    // console.log(wijkCode)
+    // console.log(gemCode)
+
+    data.wijk = selectData(wijkCode)
+    data.gemeente = selectData(gemCode)
+    data.verglijk = selectData(buurtCodeVerglijk)
+
+    console.log(data)
+
 
     $("#selectionPannel").show();
     $("#map").addClass("blured-map");
@@ -284,17 +294,12 @@ function newSelection(BUCODE) {
     //         break;
     // }
 
-
-
-
     var dropdownSlections = {
-            locatie: $("#selectionPannel > div.info > div > form:nth-child(4) > select").val(),
-            ligging: $("#selectionPannel > div.info > div > form:nth-child(5) > select").val(),
-            Steedelijkheidsgraad: $("#selectionPannel > div.info > div > form:nth-child(6) > select").val(),
-            type_wooning: $("#selectionPannel > div.data > div > form > select").val()
-        }
-        // console.log(dropdownSlections)
-        // console.log(BUCODE)
+        locatie: $("#selectionPannel > div.info > div > form:nth-child(4) > select").val(),
+        ligging: $("#selectionPannel > div.info > div > form:nth-child(5) > select").val(),
+        Steedelijkheidsgraad: $("#selectionPannel > div.info > div > form:nth-child(6) > select").val(),
+        type_wooning: $("#selectionPannel > div.data > div > form > select").val()
+    }
 
     // [ ] - Slect filte to load
     // [ ] - load data from json on server
@@ -304,26 +309,22 @@ function newSelection(BUCODE) {
     // [ ] - set values
 
     var values = {
-        gemente_naam: buDa[3],
-        wijk_naam: "Wijknaam",
-        buurt_naam: "Buurtnaam",
-
-        // binBBKom
-        // buitBBKom
-        locatie: "buitBBKom",
+        // gemente_naam: data.gemeente[3],
+        // wijk_naam: data.wijk[3].replace(data.gemeente[3] + "|", ""),
+        // buurt_naam: data.buurt[3].replace(data.gemeente[3] + "|", ""),
 
         // centrum
         // schil
         // restBBKom
         // buitGeb
-        ligging: "schil",
+        ligging: "",
 
         // zeer
         // sterk
         // matig
         // weinig
         // niet
-        Steedelijkheidsgraad: "sterk",
+        Steedelijkheidsgraad: "",
 
         // vrij_koop
         // vrij_huur
@@ -340,8 +341,43 @@ function newSelection(BUCODE) {
         // app_laag_koop
         // app_laag_huur
         // app_laag_social
-        type_wooning: "twee_kap_social",
+        type_wooning: ""
 
+    }
+
+    // Aantal bewoonbare wooningen
+    // abw_totaal
+    // abw_vrijst
+    // abw_tweekap
+    // abw_rijwoni
+    // abw_meergez_laagb
+    // abw_meergez_hoogb
+    // abw_koop
+    // abw_soc_huur
+    // abw_part_huur
+    // abw_1_pers
+    // abw_2_pers
+    // abw_3_pers
+
+    // aapbw_totaal
+    // aapbw_koop_vrijst
+    // aapbw_koop_tweekap
+    // aapbw_koop_rijwoni
+    // aapbw_koop_meergez_laagb
+    // aapbw_koop_meergez_hoogb
+    // aapbw_soc_huur_vrijst
+    // aapbw_soc_huur_tweekap
+    // aapbw_soc_huur_rijwoni
+    // aapbw_soc_huur_meergez_laagb
+    // aapbw_soc_huur_meergez_hoogb
+    // aapbw_part_huur_vrijst
+    // aapbw_part_huur_tweekap
+    // aapbw_part_huur_rijwoni
+    // aapbw_part_meergez_laagb
+    // aapbw_part_meergez_hoogb
+
+
+    var diagramData = {
         buurt_pct: "-42%",
         verlijk_pct: "-54%",
         wijk_pct: "+98%",
@@ -351,33 +387,149 @@ function newSelection(BUCODE) {
         verlijk_width: 784,
         wijk_width: 659,
         kerngetal_position: 783 //1 * 350 + 83
+    };
+
+
+    var dropdownSlections = {
+        locatie: $("#selectionPannel > div.info > div > form:nth-child(4) > select").val(),
+        ligging: $("#selectionPannel > div.info > div > form:nth-child(5) > select").val(),
+        Steedelijkheidsgraad: $("#selectionPannel > div.info > div > form:nth-child(6) > select").val(),
+        type_wooning: $("#selectionPannel > div.data > div > form > select").val()
     }
 
+
+    console.log(values)
+
+    setUiText();
+    prefillDropdownValues();
+    getDropdownValues();
+    calcDiagramValues(dropdownSlections);
     setDiagramValues();
 
+    function setUiText() {
+        $("#selectionPannel > div.info > div > h1").text(data.gemeente[3]); // gemeente
+        $("#selectionPannel > div.info > div > h3:nth-child(2)").text(data.wijk[3].replace(data.gemeente[3] + "|", "")); // wijk
+        $("#selectionPannel > div.info > div > h3:nth-child(3)").text(data.buurt[3].replace(data.gemeente[3] + "|", "")); // buurt
+    };
+
+    function prefillDropdownValues() {
+        switch (data.buurt[8]) { //liging from csv
+            case "1":
+                $("#ligging").val("centrum");
+                break;
+
+            case "2":
+                $("#ligging").val("schil");
+                break;
+
+            case "3":
+                $("#ligging").val("restBBKom");
+                break;
+
+            case "4":
+                $("#ligging").val("buitGeb");
+                break;
+
+            default:
+                break;
+        }
+
+        switch (data.buurt[6]) { //sttedlijkheid from csv
+            case "1":
+                $("#steedelijkheidsgraad").val("zeer")
+                break;
+
+            case "2":
+                $("#steedelijkheidsgraad").val("sterk")
+                break;
+
+            case "3":
+                $("#steedelijkheidsgraad").val("matig")
+                break;
+
+            case "4":
+                $("#steedelijkheidsgraad").val("weinig")
+                break;
+
+            case "5":
+                $("#steedelijkheidsgraad").val("niet")
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    function getDropdownValues() {
+        dropdownSlections = {
+            // locatie: $("#selectionPannel > div.info > div > form:nth-child(4) > select").val(),
+            ligging: $("#ligging").val(),
+            Steedelijkheidsgraad: $("#steedelijkheidsgraad").val(),
+            type_wooning: $("#selectionPannel > div.data > div > form > select").val()
+        }
+    };
+
+    function calcDiagramValues(dropdownSettings) {
+        // dropdownSlections.type_wooning
+
+        var typeWooningCollomIndez = {
+            aapbw_totaal: 21,
+            aapbw_koop_vrijst: 22,
+            aapbw_koop_tweekap: 23,
+            aapbw_koop_rijwoni: 24,
+            aapbw_koop_meergez_laagb: 25,
+            aapbw_koop_meergez_hoogb: 26,
+            aapbw_soc_huur_vrijst: 27,
+            aapbw_soc_huur_tweekap: 28,
+            aapbw_soc_huur_rijwoni: 29,
+            aapbw_soc_huur_meergez_laagb: 30,
+            aapbw_soc_huur_meergez_hoogb: 31,
+            aapbw_part_huur_vrijst: 32,
+            aapbw_part_huur_tweekap: 33,
+            aapbw_part_huur_rijwoni: 34,
+            aapbw_part_meergez_laagb: 35,
+            aapbw_part_meergez_hoogb: 36
+        };
+
+
+
+        diagramData = {
+            buurt_pct: data.buurt[typeWooningCollomIndez[dropdownSlections.type_wooning]],
+            // buurt_pct: "-42%",
+            verlijk_pct: data.verglijk[typeWooningCollomIndez[dropdownSlections.type_wooning]],
+            // verlijk_pct: "-54%",
+            wijk_pct: data.wijk[typeWooningCollomIndez[dropdownSlections.type_wooning]],
+            // wijk_pct: "+98%",
+            kerngetal_val: data.buurt[21],
+
+            buurt_width: Number(data.buurt[typeWooningCollomIndez[dropdownSlections.type_wooning]]) * 350,
+            verlijk_width: Number(data.verglijk[typeWooningCollomIndez[dropdownSlections.type_wooning]]) * 350,
+            wijk_width: Number(data.wijk[typeWooningCollomIndez[dropdownSlections.type_wooning]]) * 350,
+            kerngetal_position: Number(data.buurt[21]) * 350 + 83 //1 * 350 + 83
+                // kerngetal_position: 783 //1 * 350 + 83
+        };
+    };
+
+
     function setDiagramValues() {
-        $("#selectionPannel > div.info > div > h1").text(values.gemente_naam); // gemeente
-        $("#selectionPannel > div.info > div > h3:nth-child(2)").text(values.wijk_naam); // wijk
-        $("#selectionPannel > div.info > div > h3:nth-child(3)").text(values.buurt_naam); // buurt
 
-        $("#selectionPannel > div.info > div > form:nth-child(4) > select").val(values.locatie)
-        $("#selectionPannel > div.info > div > form:nth-child(5) > select").val(values.ligging)
-        $("#selectionPannel > div.info > div > form:nth-child(6) > select").val(values.Steedelijkheidsgraad)
-        $("#selectionPannel > div.data > div > form > select").val(values.type_wooning)
+        $("#Gekozen-buurt > tspan").text(data.buurt[3].replace(data.gemeente[3] + "|", ""));
+        $("#Verglijkbare-buurten > tspan").text("Vergelijkbare buurten (" + $("#ligging option:selected").text() + ")");
+        $("#Betrefende-wijk > tspan").text(data.wijk[3].replace(data.gemeente[3] + "|", ""));
 
-        $("#buurt-data > tspan").text(values.buurt_pct); // buurt
-        $("#verglijk-data > tspan").text(values.verlijk_pct); // verglijk
-        $("#wijk-data > tspan").text(values.wijk_pct); // wijk
+        $("#buurt-data > tspan").text(diagramData.buurt_pct); // buurt
+        $("#verglijk-data > tspan").text(diagramData.verlijk_pct); // verglijk
+        $("#wijk-data > tspan").text(diagramData.wijk_pct); // wijk
 
-        $("#kerngetal-data > tspan").text(values.kerngetal_val); // kerngetal
+        $("#kerngetal-data > tspan").text(diagramData.kerngetal_val); // kerngetal
 
         // 1 = 350  >> (X*350)
-        $("#buurt-bar").width(values.buurt_width); // bburt bar brete
-        $("#verglijk-bar").width(values.verlijk_width); // verglijkbaar bar brete
-        $("#wijk-bar").width(values.wijk_width); // wijk bar brete
+        $("#buurt-bar").width(diagramData.buurt_width); // bburt bar brete
+        $("#verglijk-bar").width(diagramData.verlijk_width); // verglijkbaar bar brete
+        $("#wijk-bar").width(diagramData.wijk_width); // wijk bar brete
 
         var kerngetalPosition = 1 * 350 + 83;
-        $("#kerngetal").attr("transform", "translate(" + values.kerngetal_position + ", 0)"); // Kerngetal positie 
+        $("#kerngetal").attr("transform", "translate(" + diagramData.kerngetal_position + ", 0)"); // Kerngetal positie 
         //X * 350 + 83
     }
 }
