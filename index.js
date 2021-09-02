@@ -410,6 +410,7 @@ function newSelection(BUCODE) {
         $("#selectionPannel > div.info > div > h1").text(data.gemeente[3]); // gemeente
         $("#selectionPannel > div.info > div > h3:nth-child(2)").text(data.wijk[3].replace(data.gemeente[3] + "|", "")); // wijk
         $("#selectionPannel > div.info > div > h3:nth-child(3)").text(data.buurt[3].replace(data.gemeente[3] + "|", "")); // buurt
+        // Test
     };
 
     function prefillDropdownValues() {
