@@ -189,17 +189,8 @@ function menuSelect(menuItem, possition) {
             $("#menu-3").addClass("active");
             $("#backgroundInfromation").show();
             $("#closeOnClick").show();
-
-            if (selectionBuCode == "") {
-                $("#selectieBtn").hide();
-            } else {
-                $("#selectieBtn").show();
-            }
-
-            if (possition != undefined) {
-                document.getElementById(possition).scrollIntoView();
-            }
-
+            if (selectionBuCode == "") { $("#selectieBtn").hide(); } else { $("#selectieBtn").show(); }
+            if (possition != undefined) { document.getElementById(possition).scrollIntoView(); }
             break;
 
         case 4:
@@ -223,13 +214,11 @@ function menuSelect(menuItem, possition) {
         case "selectie":
             $("#menu-2").addClass("active");
             $("#selectionPannel").show();
+            $("#closeOnClick").show();
             newSelection()
             break;
 
         case "uitkomsten":
-            $("#menu-2").addClass("active");
-            $("#selectionPannel").show();
-            newSelection()
             $("#uitkomsten").show();
             $("#selectionPannel").addClass("blured-map");
             $("#closeOnClick").show();
@@ -239,8 +228,6 @@ function menuSelect(menuItem, possition) {
         default:
     };
 };
-
-
 
 function newSelection(BUCODE) {
     var data = {};
@@ -259,6 +246,11 @@ function newSelection(BUCODE) {
     var buurtCodeVerglijk = JSON.parse(JSON.stringify(BUCODE));
     var wijkCode = JSON.parse(JSON.stringify(BUCODE));
     var gemCode = JSON.parse(JSON.stringify(BUCODE));
+
+    console.log(buurtCode + " test")
+    console.log(buurtCodeVerglijk + " test")
+    console.log(wijkCode + " test")
+    console.log(gemCode + " test")
 
     data.buurt = selectData(buurtCode)
 
@@ -294,56 +286,48 @@ function newSelection(BUCODE) {
     //         break;
     // }
 
-    var dropdownSlections = {
-        locatie: $("#selectionPannel > div.info > div > form:nth-child(4) > select").val(),
-        ligging: $("#selectionPannel > div.info > div > form:nth-child(5) > select").val(),
-        Steedelijkheidsgraad: $("#selectionPannel > div.info > div > form:nth-child(6) > select").val(),
-        type_wooning: $("#selectionPannel > div.data > div > form > select").val()
-    }
 
-    // [ ] - Slect filte to load
-    // [ ] - load data from json on server
-    // [ ] - get values from loaded json
+
     // [ ] - Chequ which values to select based on selection
     // [ ] - format values
     // [ ] - set values
 
-    var values = {
-        // gemente_naam: data.gemeente[3],
-        // wijk_naam: data.wijk[3].replace(data.gemeente[3] + "|", ""),
-        // buurt_naam: data.buurt[3].replace(data.gemeente[3] + "|", ""),
+    // var values = {
+    //     // gemente_naam: data.gemeente[3],
+    //     // wijk_naam: data.wijk[3].replace(data.gemeente[3] + "|", ""),
+    //     // buurt_naam: data.buurt[3].replace(data.gemeente[3] + "|", ""),
 
-        // centrum
-        // schil
-        // restBBKom
-        // buitGeb
-        ligging: "",
+    //     // centrum
+    //     // schil
+    //     // restBBKom
+    //     // buitGeb
+    //     ligging: "",
 
-        // zeer
-        // sterk
-        // matig
-        // weinig
-        // niet
-        Steedelijkheidsgraad: "",
+    //     // zeer
+    //     // sterk
+    //     // matig
+    //     // weinig
+    //     // niet
+    //     Steedelijkheidsgraad: "",
 
-        // vrij_koop
-        // vrij_huur
-        // vrij_social
-        // twee_kap_koop
-        // twee_kap_huur
-        // twee_kap_social
-        // rij_koop
-        // rij_huur
-        // rij_social
-        // app_hoog_koop
-        // app_hoog_huur
-        // app_hoog_social
-        // app_laag_koop
-        // app_laag_huur
-        // app_laag_social
-        type_wooning: ""
+    //     // vrij_koop
+    //     // vrij_huur
+    //     // vrij_social
+    //     // twee_kap_koop
+    //     // twee_kap_huur
+    //     // twee_kap_social
+    //     // rij_koop
+    //     // rij_huur
+    //     // rij_social
+    //     // app_hoog_koop
+    //     // app_hoog_huur
+    //     // app_hoog_social
+    //     // app_laag_koop
+    //     // app_laag_huur
+    //     // app_laag_social
+    //     type_wooning: ""
 
-    }
+    // }
 
     // Aantal bewoonbare wooningen
     // abw_totaal
@@ -389,29 +373,49 @@ function newSelection(BUCODE) {
         kerngetal_position: 783 //1 * 350 + 83
     };
 
-
     var dropdownSlections = {
-        locatie: $("#selectionPannel > div.info > div > form:nth-child(4) > select").val(),
-        ligging: $("#selectionPannel > div.info > div > form:nth-child(5) > select").val(),
-        Steedelijkheidsgraad: $("#selectionPannel > div.info > div > form:nth-child(6) > select").val(),
-        type_wooning: $("#selectionPannel > div.data > div > form > select").val()
+        // locatie: $("#selectionPannel > div.info > div > form:nth-child(4) > select").val(),
+        // ligging: $("#selectionPannel > div.info > div > form:nth-child(5) > select").val(),
+        // Steedelijkheidsgraad: $("#selectionPannel > div.info > div > form:nth-child(6) > select").val(),
+        // type_wooning: $("#selectionPannel > div.data > div > form > select").val()
     }
 
-
-    console.log(values)
+    // console.log(values)
 
     setUiText();
     prefillDropdownValues();
+    addAreaStatistics();
     getDropdownValues();
     calcDiagramValues(dropdownSlections);
     setDiagramValues();
 
     function setUiText() {
-        $("#selectionPannel > div.info > div > h1").text(data.gemeente[3]); // gemeente
-        $("#selectionPannel > div.info > div > h3:nth-child(2)").text(data.wijk[3].replace(data.gemeente[3] + "|", "")); // wijk
-        $("#selectionPannel > div.info > div > h3:nth-child(3)").text(data.buurt[3].replace(data.gemeente[3] + "|", "")); // buurt
+        $("#selectionPannel > div.info > div > p > span.gemeenteName").text(data.gemeente[3]); // gemeente
+        $("#selectionPannel > div.info > div > p > span.wijkName").text(data.wijk[3].replace(data.gemeente[3] + "|", "")); // wijk
+        $("#selectionPannel > div.info > div > p > span.buurtName").text(data.buurt[3].replace(data.gemeente[3] + "|", "")); // buurt
         // Test
     };
+
+    function addAreaStatistics() {
+        $("#selectionPannel .areaStatistics").html("")
+        $("#selectionPannel .areaStatistics").append('<div class="paddingBottomExtra"> WOZ: <span class="floatRight">' + data.buurt[5] + ' 000€</span></div>')
+
+        $("#selectionPannel .areaStatistics").append('<div> Vrijst: <span class="floatRight">' + Math.round(data.buurt[10] * 100) + '%</span></div>')
+        $("#selectionPannel .areaStatistics").append('<div> Tweekap: <span class="floatRight">' + Math.round(data.buurt[11] * 100) + '%</span></div>')
+        $("#selectionPannel .areaStatistics").append('<div> Rijwoni: <span class="floatRight">' + Math.round(data.buurt[12] * 100) + '%</span></div>')
+        $("#selectionPannel .areaStatistics").append('<div> Meergez. laagb: <span class="floatRight">' + Math.round(data.buurt[13] * 100) + '%</span></div>')
+        $("#selectionPannel .areaStatistics").append('<div class="paddingBottomExtra"> Meergez. hoogb: <span class="floatRight">' + Math.round(data.buurt[14] * 100) + '%</span></div>')
+
+        $("#selectionPannel .areaStatistics").append('<div> Koop: <span class="floatRight">' + Math.round(data.buurt[15] * 100) + '%</span></div>')
+        $("#selectionPannel .areaStatistics").append('<div> Soc. huur: <span class="floatRight">' + Math.round(data.buurt[16] * 100) + '%</span></div>')
+        $("#selectionPannel .areaStatistics").append('<div class="paddingBottomExtra"> Part. huur: <span class="floatRight">' + Math.round(data.buurt[17] * 100) + '%</span></div>')
+
+        $("#selectionPannel .areaStatistics").append('<div> 1 pers: <span class="floatRight">' + Math.round(data.buurt[18] * 100) + '%</span></div>')
+        $("#selectionPannel .areaStatistics").append('<div> 2 pers: <span class="floatRight">' + Math.round(data.buurt[19] * 100) + '%</span></div>')
+        $("#selectionPannel .areaStatistics").append('<div class="paddingBottomExtra"> 3 pers: <span class="floatRight">' + Math.round(data.buurt[20] * 100) + '%</span></div>')
+
+        // $("#selectionPannel .areaStatistics").append('<div> Keyname: <span class="floatRight">35456€</span></div>')
+    }
 
     function prefillDropdownValues() {
         switch (data.buurt[8]) { //liging from csv
