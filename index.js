@@ -13,7 +13,7 @@ $.get("https://raw.githubusercontent.com/daanvr/passende-parkeernorm/main/extra/
 });
 
 
-
+// [ ] we could add a loading icon if need be
 function dataIsReady() {
     console.log(dataAlles)
     for (i in dataAlles) {
@@ -24,7 +24,6 @@ function dataIsReady() {
     }
 }
 
-
 mapboxgl.accessToken = 'pk.eyJ1IjoiZ291ZGFwcGVsIiwiYSI6ImNrcDcyYXMzdTB3ZjIydHF0cm94emc4Nm8ifQ.onzub-d-L_rzw9dPV8H2xw';
 var map = new mapboxgl.Map({
     container: 'map',
@@ -32,9 +31,6 @@ var map = new mapboxgl.Map({
     center: [5.922896, 51.975716],
     zoom: 10
 });
-
-// $(document).ready(function(){
-// });
 
 var coordinatesGeocoder = function(query) {
     /* Given a query in the form "lng, lat" or "lat, lng"
@@ -98,52 +94,50 @@ map.addControl( // Add the control to the map.
     })
 );
 
-// Select menu item by Querystring
-// var toggle = window.location.search.substring(1);
-// console.log(urlData);
+$(document).ready(function() {
+    var urlData = searchToObject();
+    if (urlData.menuItem == '1') {
+        menuSelect(1)
+    } else if (urlData.menuItem == '2') {
+        menuSelect(2)
+    } else if (urlData.menuItem == '3') {
+        menuSelect(3)
+    } else if (urlData.menuItem == '4') {
+        menuSelect(4)
+    } else {
+        menuSelect(1)
+    };
+});
 
-var urlData = searchToObject();
-if (urlData.menuItem == '1') {
-    menuSelect(1)
-} else if (urlData.menuItem == '2') {
-    menuSelect(2)
-} else if (urlData.menuItem == '3') {
-    menuSelect(3)
-} else if (urlData.menuItem == '4') {
-    menuSelect(4)
-} else {
-    menuSelect(1)
-};
-
-var params = new URLSearchParams(window.location.search)
-console.log(params);
-for (let p of params) {
-    console.log(p);
-}
+// var params = new URLSearchParams(window.location.search)
+// console.log(params);
+// for (let p of params) {
+//     console.log(p);
+// }
 
 
-console.log(location.search
-    .slice(1)
-    .split('&')
-    .map(p => p.split('='))
-    .reduce((obj, [key, value]) => ({...obj, [key]: value }), {}))
+// console.log(location.search
+//     .slice(1)
+//     .split('&')
+//     .map(p => p.split('='))
+//     .reduce((obj, [key, value]) => ({...obj, [key]: value }), {}))
 
 
-function searchToObjectOLD() {
-    var pairs = window.location.search.substring(1).split("&"),
-        obj = {},
-        pair,
-        i;
+// function searchToObjectOLD() {
+//     var pairs = window.location.search.substring(1).split("&"),
+//         obj = {},
+//         pair,
+//         i;
 
-    for (i in pairs) {
-        if (pairs[i] === "") continue;
+//     for (i in pairs) {
+//         if (pairs[i] === "") continue;
 
-        pair = pairs[i].split("=");
-        obj[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
-    }
+//         pair = pairs[i].split("=");
+//         obj[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+//     }
 
-    return obj;
-}
+//     return obj;
+// }
 
 function searchToObject() {
     var urlDataString = decodeURIComponent(window.location.search);
@@ -229,9 +223,12 @@ function menuSelect(menuItem, possition) {
     };
 };
 
-function newSelection(BUCODE) {
+function newSelection(BUCODE, reselect) {
     var data = {};
-    if (BUCODE != undefined) {
+
+    if (BUCODE === undefined) {
+        BUCODE = selectionBuCode;
+    } else {
         selectionBuCode = BUCODE;
     }
 
@@ -240,35 +237,59 @@ function newSelection(BUCODE) {
         return dataAlles[dataIndex.indexOf(code)]
     }
 
-    console.log(BUCODE)
+    // console.log(BUCODE)
 
     var buurtCode = JSON.parse(JSON.stringify(BUCODE));
-    var buurtCodeVerglijk = JSON.parse(JSON.stringify(BUCODE));
-    var wijkCode = JSON.parse(JSON.stringify(BUCODE));
-    var gemCode = JSON.parse(JSON.stringify(BUCODE));
+    var buurtCodeVerglijk = JSON.parse(JSON.stringify(BUCODE)); // copie for adjusting later
+    var wijkCode = JSON.parse(JSON.stringify(BUCODE)); // copie for adjusting later
+    var gemCode = JSON.parse(JSON.stringify(BUCODE)); // copie for adjusting later
 
-    console.log(buurtCode + " test")
-    console.log(buurtCodeVerglijk + " test")
-    console.log(wijkCode + " test")
-    console.log(gemCode + " test")
+    // console.log(buurtCode + " test")
+    // console.log(buurtCodeVerglijk + " test")
+    // console.log(wijkCode + " test")
+    // console.log(gemCode + " test")
 
-    data.buurt = selectData(buurtCode)
+    var onbekendeBuurt = ["", 0, "Geen resultaat", "Geen resultaat", "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+
+    if (selectData(buurtCode) === undefined) {
+        console.log("Buurt code onbekend:" + buurtCode)
+        alert("Er zijn geen gegevens voor deze buurt. Probeer een andere buurt.");
+    } else {
+        data.buurt = selectData(buurtCode)
+    }
 
     wijkCode = wijkCode.replace("BU", "WK").slice(0, 8);
     gemCode = gemCode.replace("BU", "GM").slice(0, 6);
 
-    buurtCodeVerglijk = wijkCode.replace("BU", "LI").slice(0, 7);
-    buurtCodeVerglijk += data.buurt[8];
+    for (var key in data) {
+        if (data[key] === undefined) {
+            data[key] = onbekendeBuurt
+            console.log("onbekend gebied")
+        }
+    }
 
-    // console.log(buurtCode)
-    // console.log(buurtCodeVerglijk)
-    // console.log(wijkCode)
-    // console.log(gemCode)
+    buurtCodeVerglijk = wijkCode.replace("BU", "LI").slice(0, 7);
+    buurtCodeVerglijk += data.buurt[8]; // "OAD" van buurt
+
+
+    console.log(buurtCode)
+    console.log(buurtCodeVerglijk)
+    console.log(wijkCode)
+    console.log(gemCode)
 
     data.wijk = selectData(wijkCode)
     data.gemeente = selectData(gemCode)
     data.verglijk = selectData(buurtCodeVerglijk)
 
+    for (var key in data) {
+        if (data[key] === undefined) {
+            data[key] = onbekendeBuurt
+            console.log("onbekend gebied")
+        }
+    }
+
+    console.log("Geselecteerde gebieden data:")
     console.log(data)
 
 
@@ -360,17 +381,16 @@ function newSelection(BUCODE) {
     // aapbw_part_meergez_laagb
     // aapbw_part_meergez_hoogb
 
-
     var diagramData = {
-        buurt_pct: "-42%",
-        verlijk_pct: "-54%",
-        wijk_pct: "+98%",
-        kerngetal_val: " 2.6",
+        // buurt_pct: "-42%",
+        // verlijk_pct: "-54%",
+        // wijk_pct: "+98%",
+        // kerngetal_val: " 2.6",
 
-        buurt_width: 365,
-        verlijk_width: 784,
-        wijk_width: 659,
-        kerngetal_position: 783 //1 * 350 + 83
+        // buurt_width: 365,
+        // verlijk_width: 784,
+        // wijk_width: 659,
+        // kerngetal_position: 783 //1 * 350 + 83
     };
 
     var dropdownSlections = {
@@ -383,7 +403,9 @@ function newSelection(BUCODE) {
     // console.log(values)
 
     setUiText();
-    prefillDropdownValues();
+    if (!reselect) {
+        prefillDropdownValues();
+    }
     addAreaStatistics();
     getDropdownValues();
     calcDiagramValues(dropdownSlections);
@@ -477,7 +499,7 @@ function newSelection(BUCODE) {
     function calcDiagramValues(dropdownSettings) {
         // dropdownSlections.type_wooning
 
-        var typeWooningCollomIndez = {
+        var typeWooningCollomIndezx = {
             aapbw_totaal: 21,
             aapbw_koop_vrijst: 22,
             aapbw_koop_tweekap: 23,
@@ -499,39 +521,70 @@ function newSelection(BUCODE) {
 
 
         diagramData = {
-            buurt_pct: data.buurt[typeWooningCollomIndez[dropdownSlections.type_wooning]],
+            buurt_pct: data.buurt[typeWooningCollomIndezx[dropdownSlections.type_wooning]],
             // buurt_pct: "-42%",
-            verlijk_pct: data.verglijk[typeWooningCollomIndez[dropdownSlections.type_wooning]],
+            verlijk_pct: data.verglijk[typeWooningCollomIndezx[dropdownSlections.type_wooning]],
             // verlijk_pct: "-54%",
-            wijk_pct: data.wijk[typeWooningCollomIndez[dropdownSlections.type_wooning]],
+            wijk_pct: data.wijk[typeWooningCollomIndezx[dropdownSlections.type_wooning]],
             // wijk_pct: "+98%",
             kerngetal_val: data.buurt[21],
 
-            buurt_width: Number(data.buurt[typeWooningCollomIndez[dropdownSlections.type_wooning]]) * 350,
-            verlijk_width: Number(data.verglijk[typeWooningCollomIndez[dropdownSlections.type_wooning]]) * 350,
-            wijk_width: Number(data.wijk[typeWooningCollomIndez[dropdownSlections.type_wooning]]) * 350,
+            buurt_width: Number(data.buurt[typeWooningCollomIndezx[dropdownSlections.type_wooning]]) * 350,
+            verlijk_width: Number(data.verglijk[typeWooningCollomIndezx[dropdownSlections.type_wooning]]) * 350,
+            wijk_width: Number(data.wijk[typeWooningCollomIndezx[dropdownSlections.type_wooning]]) * 350,
             kerngetal_position: Number(data.buurt[21]) * 350 + 83 //1 * 350 + 83
                 // kerngetal_position: 783 //1 * 350 + 83
         };
-    };
 
+        for (var key in diagramData) {
+            if (diagramData[key] == "") {
+                diagramData[key] = "-";
+                // console.log("onbekend gebied")
+            }
+        }
+
+    };
 
     function setDiagramValues() {
 
-        $("#Gekozen-buurt > tspan").text(data.buurt[3].replace(data.gemeente[3] + "|", ""));
-        $("#Verglijkbare-buurten > tspan").text("Vergelijkbare buurten (" + $("#ligging option:selected").text() + ")");
-        $("#Betrefende-wijk > tspan").text(data.wijk[3].replace(data.gemeente[3] + "|", ""));
-
+        //De geselecteerde buurt
+        if (diagramData.buurt_pct == "-") {
+            $("#Gekozen-buurt > tspan").text("Geselecteerde buurt: Geen gegevens voor deze sub specificaties.");
+            $("#buurt-bar").width(5); // bburt bar brete
+        } else {
+            $("#Gekozen-buurt > tspan").text("Geselecteerde buurt: " + data.buurt[3].replace(data.gemeente[3] + "|", ""));
+            $("#buurt-bar").width(diagramData.buurt_width); // bburt bar brete
+        }
         $("#buurt-data > tspan").text(diagramData.buurt_pct); // buurt
+
+        //Verglijkbare buurt
+        if (diagramData.verlijk_pct == "-") {
+            $("#Verglijkbare-buurten > tspan").text("Vergelijkbare buurt. Geen gegevens voor deze sub specificaties");
+            $("#verglijk-bar").width(5); // verglijkbaar bar brete
+        } else {
+            $("#Verglijkbare-buurten > tspan").text("Vergelijkbare buurten (" + $("#ligging option:selected").text() + ")");
+            $("#verglijk-bar").width(diagramData.verlijk_width); // verglijkbaar bar brete
+        }
         $("#verglijk-data > tspan").text(diagramData.verlijk_pct); // verglijk
+
+        //Wijk
+        if (diagramData.wijk_pct == "-") {
+            $("#Betrefende-wijk > tspan").text("Wijk: Geen gegevens voor deze sub specificaties");
+            $("#wijk-bar").width(5); // wijk bar brete
+        } else {
+            $("#Betrefende-wijk > tspan").text("Wijk: " + data.wijk[3].replace(data.gemeente[3] + "|", "").replace("Wijk", ""));
+            $("#wijk-bar").width(diagramData.wijk_width); // wijk bar brete
+        }
         $("#wijk-data > tspan").text(diagramData.wijk_pct); // wijk
 
+
+
+
+
+        // =================================================================================================================================================================
         $("#kerngetal-data > tspan").text(diagramData.kerngetal_val); // kerngetal
 
         // 1 = 350  >> (X*350)
-        $("#buurt-bar").width(diagramData.buurt_width); // bburt bar brete
-        $("#verglijk-bar").width(diagramData.verlijk_width); // verglijkbaar bar brete
-        $("#wijk-bar").width(diagramData.wijk_width); // wijk bar brete
 
         var kerngetalPosition = 1 * 350 + 83;
         $("#kerngetal").attr("transform", "translate(" + diagramData.kerngetal_position + ", 0)"); // Kerngetal positie 
