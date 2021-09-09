@@ -177,6 +177,24 @@ p b.linkToIntern {
     margin: 10px 10px;
 }
 
+#selectionPannel>div.data>div>div>button {
+    all: unset;
+    display: inline-block;
+    /* background: rgba(217, 0, 87, 0.5); */
+    background: #D90057;
+    background-image: linear-gradient(-143deg, #FF4C76 0%, #D90057 100%);
+    border-radius: 10px;
+    cursor: pointer;
+    width: 350px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 10px 0;
+    margin: 10px 10px;
+}
+
 .animated {
     transition: all 0.15s ease-in-out;
 }
@@ -198,14 +216,14 @@ p b.linkToIntern {
     /* border: solid red 1px; */
     float: left;
     /* padding-right: 5px; */
-    width: 250px;
+    width: 260px;
     /* min-width: 210px; */
     height: 100%;
     overflow: scroll;
 }
 
 #selectionPannel .gemeenteName {
-    font-size: 2em;
+    font-size: 1.4em;
     display: inline-block;
     margin: 0 0 10px 0;
     color: #D90057;
@@ -213,7 +231,7 @@ p b.linkToIntern {
 
 #selectionPannel .wijkName {
     color: #D90057;
-    font-size: 1.6em;
+    font-size: 1.4em;
     display: inline-block;
     margin: 0 0 10px 0;
 }
@@ -299,6 +317,7 @@ p b.linkToIntern {
     border-radius: 50%;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
+    margin: 25px;
     /* margin: 0 15%; */
 }
 

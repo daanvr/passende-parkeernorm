@@ -3,8 +3,11 @@ var dataAlles;
 var dataIsReadyBol = false;
 var dataIndex = [];
 
+
+
+
 // sent a GET request to retrieve the CSV file contents
-$.get("https://raw.githubusercontent.com/daanvr/passende-parkeernorm/main/extra/data.csv", function(CSVdata) {
+$.get("extra/data.csv", function(CSVdata) {
     // CSVdata is populated with the file contents
     // ready to be converted into an Array
     dataAlles = $.csv.toArrays(CSVdata);
@@ -28,8 +31,10 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiZ291ZGFwcGVsIiwiYSI6ImNrcDcyYXMzdTB3ZjIydHF0c
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/goudappel/ckp7wx0xi47ir17l1pmz0tc1x',
-    center: [5.922896, 51.975716],
-    zoom: 10
+    // center: [5.922896, 51.975716],
+    center: [5.387210205587345, 52.155190195840795],
+    // zoom: 10
+    zoom: 7
 });
 
 var coordinatesGeocoder = function(query) {
@@ -400,7 +405,80 @@ function newSelection(BUCODE, reselect) {
         // type_wooning: $("#selectionPannel > div.data > div > form > select").val()
     }
 
-    // console.log(values)
+
+    var kengetalen = {
+            "zeer": {
+                "aapbw_koop_vrijst": [1.2, 1.4, 1.7, 2],
+                "aapbw_koop_tweekap": [1.1, 1.3, 1.6, 1.8],
+                "aapbw_koop_rijwoni": [1, 1.2, 1.4, 1.6],
+                "aapbw_part_huur_vrijst": [1, 1.2, 1.4, 1.6],
+                "aapbw_part_huur_tweekap": [1, 1.2, 1.4, 1.6],
+                "aapbw_part_huur_rijwoni": [1, 1.2, 1.4, 1.6],
+                "aapbw_soc_huur_vrijst": [0.8, 0.9, 1, 1.2],
+                "aapbw_soc_huur_tweekap": [0.8, 0.9, 1, 1.2],
+                "aapbw_soc_huur_rijwoni": [0.8, 0.9, 1, 1.2],
+                "aapbw_part_meergez_hoogb": [0.9, 1.1, 1.3, 1.5],
+                "aapbw_koop_meergez_hoogb": [0.9, 1.1, 1.3, 1.5],
+                "aapbw_soc_huur_meergez_hoogb": [0.6, 0.7, 0.8, 1]
+            },
+            "sterk": {
+                "aapbw_koop_vrijst": [1.3, 1.5, 1.8, 2.1],
+                "aapbw_koop_tweekap": [1.2, 1.4, 1.7, 1.9],
+                "aapbw_koop_rijwoni": [1.1, 1.3, 1.5, 1.7],
+                "aapbw_part_huur_vrijst": [1.1, 1.3, 1.5, 1.7],
+                "aapbw_part_huur_tweekap": [1.1, 1.3, 1.5, 1.7],
+                "aapbw_part_huur_rijwoni": [1.1, 1.3, 1.5, 1.7],
+                "aapbw_soc_huur_vrijst": [0.9, 1, 1.2, 1.3],
+                "aapbw_soc_huur_tweekap": [0.9, 1, 1.2, 1.3],
+                "aapbw_soc_huur_rijwoni": [0.9, 1, 1.2, 1.3],
+                "aapbw_part_meergez_hoogb": [1, 1.2, 1.4, 1.6],
+                "aapbw_koop_meergez_hoogb": [1.0, 1.2, 1.4, 1.6],
+                "aapbw_soc_huur_meergez_hoogb": [0.7, 0.8, 1, 1.1]
+            },
+            "matig": {
+                "aapbw_koop_vrijst": [1.5, 1.6, 1.9, 2.1],
+                "aapbw_koop_tweekap": [1.4, 1.5, 1.8, 1.9],
+                "aapbw_koop_rijwoni": [1.2, 1.4, 1.6, 1.7],
+                "aapbw_part_huur_vrijst": [1.2, 1.4, 1.6, 1.7],
+                "aapbw_part_huur_tweekap": [1.2, 1.4, 1.6, 1.7],
+                "aapbw_part_huur_rijwoni": [1.2, 1.4, 1.6, 1.7],
+                "aapbw_soc_huur_vrijst": [1, 1.1, 1.3, 1.3],
+                "aapbw_soc_huur_tweekap": [1, 1.1, 1.3, 1.3],
+                "aapbw_soc_huur_rijwoni": [1, 1.1, 1.3, 1.3],
+                "aapbw_part_meergez_hoogb": [1.1, 1.3, 1.5, 1.6],
+                "aapbw_koop_meergez_hoogb": [1.1, 1.3, 1.5, 1.6],
+                "aapbw_soc_huur_meergez_hoogb": [0.8, 0.9, 1.1, 1.1]
+            },
+            "weinig": {
+                "aapbw_koop_vrijst": [1.5, 1.8, 2, 2.1],
+                "aapbw_koop_tweekap": [1.4, 1.7, 1.9, 1.9],
+                "aapbw_koop_rijwoni": [1.2, 1.5, 1.7, 1.7],
+                "aapbw_part_huur_vrijst": [1.2, 1.5, 1.7, 1.7],
+                "aapbw_part_huur_tweekap": [1.2, 1.5, 1.7, 1.7],
+                "aapbw_part_huur_rijwoni": [1.2, 1.5, 1.7, 1.7],
+                "aapbw_soc_huur_vrijst": [1, 1.1, 1.3, 1.3],
+                "aapbw_soc_huur_tweekap": [1, 1.1, 1.3, 1.3],
+                "aapbw_soc_huur_rijwoni": [1, 1.1, 1.3, 1.3],
+                "aapbw_part_meergez_hoogb": [1.1, 1.4, 1.6, 1.6],
+                "aapbw_koop_meergez_hoogb": [1.1, 1.4, 1.6, 1.6],
+                "aapbw_soc_huur_meergez_hoogb": [0.8, 0.9, 1.1, 1.1]
+            },
+            "niet": {
+                "aapbw_koop_vrijst": [1.5, 1.8, 2, 2.1],
+                "aapbw_koop_tweekap": [1.4, 1.7, 1.9, 1.9],
+                "aapbw_koop_rijwoni": [1.2, 1.5, 1.7, 1.7],
+                "aapbw_part_huur_vrijst": [1.2, 1.5, 1.7, 1.7],
+                "aapbw_part_huur_tweekap": [1.2, 1.5, 1.7, 1.7],
+                "aapbw_part_huur_rijwoni": [1.2, 1.5, 1.7, 1.7],
+                "aapbw_soc_huur_vrijst": [1, 1.1, 1.3, 1.3],
+                "aapbw_soc_huur_tweekap": [1, 1.1, 1.3, 1.3],
+                "aapbw_soc_huur_rijwoni": [1, 1.1, 1.3, 1.3],
+                "aapbw_part_meergez_hoogb": [1.1, 1.4, 1.6, 1.6],
+                "aapbw_koop_meergez_hoogb": [1.1, 1.4, 1.6, 1.6],
+                "aapbw_soc_huur_meergez_hoogb": [0.8, 0.9, 1.1, 1.1]
+            }
+        }
+        // console.log(values)
 
     setUiText();
     if (!reselect) {
@@ -420,21 +498,25 @@ function newSelection(BUCODE, reselect) {
 
     function addAreaStatistics() {
         $("#selectionPannel .areaStatistics").html("")
-        $("#selectionPannel .areaStatistics").append('<div class="paddingBottomExtra"> WOZ: <span class="floatRight">' + data.buurt[5] + ' 000€</span></div>')
+        $("#selectionPannel .areaStatistics").append('<div class="paddingBottomExtra"> WOZ-waarde: <span class="floatRight">' + data.buurt[5] + ' 000€</span></div>')
 
-        $("#selectionPannel .areaStatistics").append('<div> Vrijst: <span class="floatRight">' + Math.round(data.buurt[10] * 100) + '%</span></div>')
-        $("#selectionPannel .areaStatistics").append('<div> Tweekap: <span class="floatRight">' + Math.round(data.buurt[11] * 100) + '%</span></div>')
-        $("#selectionPannel .areaStatistics").append('<div> Rijwoni: <span class="floatRight">' + Math.round(data.buurt[12] * 100) + '%</span></div>')
-        $("#selectionPannel .areaStatistics").append('<div> Meergez. laagb: <span class="floatRight">' + Math.round(data.buurt[13] * 100) + '%</span></div>')
-        $("#selectionPannel .areaStatistics").append('<div class="paddingBottomExtra"> Meergez. hoogb: <span class="floatRight">' + Math.round(data.buurt[14] * 100) + '%</span></div>')
+        $("#selectionPannel .areaStatistics").append('<div> <b>Type woningen</b></div>')
+        $("#selectionPannel .areaStatistics").append('<div> Vrijstaande woning: <span class="floatRight">' + Math.round(data.buurt[10] * 100) + '%</span></div>')
+        $("#selectionPannel .areaStatistics").append('<div> 2-onder-1-kap: <span class="floatRight">' + Math.round(data.buurt[11] * 100) + '%</span></div>')
+        $("#selectionPannel .areaStatistics").append('<div> Rijwoning: <span class="floatRight">' + Math.round(data.buurt[12] * 100) + '%</span></div>')
+            // $("#selectionPannel .areaStatistics").append('<div> Meergez. laagb: <span class="floatRight">' + Math.round(data.buurt[13] * 100) + '%</span></div>')
+        $("#selectionPannel .areaStatistics").append('<div class="paddingBottomExtra"> Appartement: <span class="floatRight">' + Math.round(data.buurt[14] * 100) + '%</span></div>')
 
-        $("#selectionPannel .areaStatistics").append('<div> Koop: <span class="floatRight">' + Math.round(data.buurt[15] * 100) + '%</span></div>')
-        $("#selectionPannel .areaStatistics").append('<div> Soc. huur: <span class="floatRight">' + Math.round(data.buurt[16] * 100) + '%</span></div>')
-        $("#selectionPannel .areaStatistics").append('<div class="paddingBottomExtra"> Part. huur: <span class="floatRight">' + Math.round(data.buurt[17] * 100) + '%</span></div>')
+        $("#selectionPannel .areaStatistics").append('<div> <b>Eigendomssituatie</b></div>')
+        $("#selectionPannel .areaStatistics").append('<div> Koopwoning: <span class="floatRight">' + Math.round(data.buurt[15] * 100) + '%</span></div>')
+        $("#selectionPannel .areaStatistics").append('<div> Particuliere huurwoning: <span class="floatRight">' + Math.round(data.buurt[17] * 100) + '%</span></div>')
+        $("#selectionPannel .areaStatistics").append('<div class="paddingBottomExtra"> Sociale huurwoning: <span class="floatRight">' + Math.round(data.buurt[16] * 100) + '%</span></div>')
 
-        $("#selectionPannel .areaStatistics").append('<div> 1 pers: <span class="floatRight">' + Math.round(data.buurt[18] * 100) + '%</span></div>')
-        $("#selectionPannel .areaStatistics").append('<div> 2 pers: <span class="floatRight">' + Math.round(data.buurt[19] * 100) + '%</span></div>')
-        $("#selectionPannel .areaStatistics").append('<div class="paddingBottomExtra"> 3 pers: <span class="floatRight">' + Math.round(data.buurt[20] * 100) + '%</span></div>')
+        $("#selectionPannel .areaStatistics").append('<div> <b>Huishoudengrootte</b> </div>')
+        $("#selectionPannel .areaStatistics").append('<div> 1 persoonshuishouden: <span class="floatRight">' + Math.round(data.buurt[18] * 100) + '%</span></div>')
+        $("#selectionPannel .areaStatistics").append('<div> 2 persoonshuishouden: <span class="floatRight">' + Math.round(data.buurt[19] * 100) + '%</span></div>')
+        $("#selectionPannel .areaStatistics").append('<div class="paddingBottomExtra"> 3+ persoonshuishouden: <span class="floatRight">' + Math.round(data.buurt[20] * 100) + '%</span></div>')
+        $("#selectionPannel .areaStatistics").append('<div class="paddingBottomExtra"> <br></div>')
 
         // $("#selectionPannel .areaStatistics").append('<div> Keyname: <span class="floatRight">35456€</span></div>')
     }
@@ -461,7 +543,7 @@ function newSelection(BUCODE, reselect) {
                 break;
         }
 
-        switch (data.buurt[6]) { //sttedlijkheid from csv
+        switch (data.gemeente[6]) { //sttedlijkheid from csv
             case "1":
                 $("#steedelijkheidsgraad").val("zeer")
                 break;
@@ -518,6 +600,27 @@ function newSelection(BUCODE, reselect) {
             aapbw_part_meergez_hoogb: 36
         };
 
+        var liggingNbr;
+        switch (dropdownSlections.ligging) {
+            case "centrum":
+                liggingNbr = 0;
+                break;
+
+            case "schil":
+                liggingNbr = 1;
+                break;
+
+            case "restBBKom":
+                liggingNbr = 2;
+                break;
+
+            case "buitGeb":
+                liggingNbr = 3;
+                break;
+
+            default:
+                break;
+        }
 
 
         diagramData = {
@@ -527,12 +630,19 @@ function newSelection(BUCODE, reselect) {
             // verlijk_pct: "-54%",
             wijk_pct: data.wijk[typeWooningCollomIndezx[dropdownSlections.type_wooning]],
             // wijk_pct: "+98%",
-            kerngetal_val: data.buurt[21],
+            // kerngetal_val: data.buurt[21],
+            kerngetal_val: kengetalen[dropdownSlections.Steedelijkheidsgraad][dropdownSlections.type_wooning][liggingNbr],
+
+            // dropdownSlections.ligging
+            // dropdownSlections.Steedelijkheidsgraad
+            // dropdownSlections.type_wooning
+
+
 
             buurt_width: Number(data.buurt[typeWooningCollomIndezx[dropdownSlections.type_wooning]]) * 350,
             verlijk_width: Number(data.verglijk[typeWooningCollomIndezx[dropdownSlections.type_wooning]]) * 350,
             wijk_width: Number(data.wijk[typeWooningCollomIndezx[dropdownSlections.type_wooning]]) * 350,
-            kerngetal_position: Number(data.buurt[21]) * 350 + 83 //1 * 350 + 83
+            kerngetal_position: Number(kengetalen[dropdownSlections.Steedelijkheidsgraad][dropdownSlections.type_wooning][liggingNbr]) * 350 + 83 //1 * 350 + 83
                 // kerngetal_position: 783 //1 * 350 + 83
         };
 
