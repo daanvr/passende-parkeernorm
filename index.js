@@ -7,7 +7,7 @@ var dataIndex = [];
 
 
 // sent a GET request to retrieve the CSV file contents
-$.get("extra/data.csv", function(CSVdata) {
+$.get("extra/data_v2.csv", function(CSVdata) {
     // CSVdata is populated with the file contents
     // ready to be converted into an Array
     dataAlles = $.csv.toArrays(CSVdata);
@@ -274,14 +274,18 @@ function newSelection(BUCODE, reselect) {
         }
     }
 
-    buurtCodeVerglijk = wijkCode.replace("BU", "LI").slice(0, 7);
+    // buurtCodeVerglijk = wijkCode.replace("BU", "LI").slice(0, 7);
+    buurtCodeVerglijk = JSON.parse(JSON.stringify(wijkCode));
+    buurtCodeVerglijk = buurtCodeVerglijk.replace("BU", "LI");
+    buurtCodeVerglijk = buurtCodeVerglijk.replace("WK", "LI");
+    buurtCodeVerglijk = buurtCodeVerglijk.slice(0, 7);
     buurtCodeVerglijk += data.buurt[8]; // "OAD" van buurt
 
 
-    console.log(buurtCode)
-    console.log(buurtCodeVerglijk)
-    console.log(wijkCode)
-    console.log(gemCode)
+    console.log("buurtCode: " + buurtCode)
+    console.log("buurtCodeVerglijk: " + buurtCodeVerglijk)
+    console.log("wijkCode: " + wijkCode)
+    console.log("gemCode: " + gemCode)
 
     data.wijk = selectData(wijkCode)
     data.gemeente = selectData(gemCode)
