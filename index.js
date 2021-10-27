@@ -509,7 +509,7 @@ function newSelection(BUCODE, reselect) {
         $("#selectionPannel .areaStatistics").append('<div> 2-onder-1-kap: <span class="floatRight">' + Math.round(data.buurt[11] * 100) + '%</span></div>')
         $("#selectionPannel .areaStatistics").append('<div> Rijwoning: <span class="floatRight">' + Math.round(data.buurt[12] * 100) + '%</span></div>')
             // $("#selectionPannel .areaStatistics").append('<div> Meergez. laagb: <span class="floatRight">' + Math.round(data.buurt[13] * 100) + '%</span></div>')
-        $("#selectionPannel .areaStatistics").append('<div class="paddingBottomExtra"> Appartement: <span class="floatRight">' + Math.round(data.buurt[14] * 100) + '%</span></div>')
+        $("#selectionPannel .areaStatistics").append('<div class="paddingBottomExtra"> Appartement: <span class="floatRight">' + Math.round((Number(data.buurt[14]) + Number(data.buurt[13])) * 100) + '%</span></div>')
 
         $("#selectionPannel .areaStatistics").append('<div> <b>Eigendomssituatie</b></div>')
         $("#selectionPannel .areaStatistics").append('<div> Koopwoning: <span class="floatRight">' + Math.round(data.buurt[15] * 100) + '%</span></div>')

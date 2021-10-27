@@ -214,13 +214,13 @@
             <p style="margin-top: 0; text-align: center;">Van onnodige parkeerplaats naar betaalbare woning!</p>
             <p>Passendeparkeernorm.nl laat het daadwerkelijke <b class="linkToIntern" onclick="menuSelect(3, 'Autobezit')">autobezit</b> zien van alle buurten in Nederland. Hierbij wordt het autobezit getoond naar <b class="linkToIntern" onclick="menuSelect(3, 'Woningtype')">woningtype</b>                en <b class="linkToIntern" onclick="menuSelect(3, 'Eigendomssituatie')">eigendomssituatie</b>. Tevens wordt aangegeven of dit autobezit afwijkt van het aantal benodigde parkeerplaatsen, berekend op basis van een <b class="linkToIntern"
                     onclick="menuSelect(3, 'Parkeerkengetal')">parkeerkengetal</b>.</p>
-            <p>Als er afwijkingen zijn en de gemeentelijke parkeernormen op kengetallen zijn gebaseerd, betekent dit dat de gemeentelijke parkeernormen mogelijk niet goed aansluiten bij de reële, daadwerkelijk parkeerbehoefte. Dit inzicht kan bij het realiseren
+            <p>Als er afwijkingen zijn en de gemeentelijke parkeernormen op kengetallen zijn gebaseerd, betekent dit dat de gemeentelijke parkeernormen mogelijk niet goed aansluiten bij de reële, daadwerkelijke parkeerbehoefte. Dit inzicht kan bij het realiseren
                 van nieuwe woningen input zijn voor het zo goed mogelijk toepassen van de parkeernorm, in de vorm van onderbouwd maatwerk. Mogelijk wordt dan voorkomen dat financiële middelen worden ingezet voor de aanleg van parkeerplaatsen die niet
                 gebruikt gaan worden.</p>
             <!-- <p>Passendeparkeernorm.nl geeft tevens inzicht in de mate waarmee rekening gehouden kan worden met de parkeerbehoefte van bezoekers van bewoners. Voor dit <b class="linkToIntern" onclick="menuSelect(3, 'Bezoekersparkeren')">bezoekersparkeren</b>                wordt (te) vaak zonder onderbouwing het kengetal van 0,3 parkeerplaats per woning aangehouden. </p </div> -->
             <div class="btn">
                 <button onclick="menuSelect('gemeente')">Aanvullende informatie gemeente</button>
-                <button onclick="menuSelect('ontwikkelaars')">Aanvullende informatie Ontwikkelaars</button>
+                <button onclick="menuSelect('ontwikkelaars')">Aanvullende informatie ontwikkelaars</button>
             </div>
             <div class="btn">
                 <button onclick="menuSelect(2)">Start</button>
@@ -318,10 +318,12 @@
             <p><b id="Gemeente">Gemeente</b>: Nederland telt een groot aantal regionale indelingen, ook wel gebiedsindelingen genoemd. Een gemeente houdt zich bezig met zaken die rechtstreeks en uitsluitend van belang zijn voor de eigen inwoners. Een gemeente
                 is, na de Rijksoverheid en de Nederlandse provincies, de derde bestuurslaag in het Nederlandse staatsbestel. De belangrijkste bestuurlijke, statistische en onderwerpgerichte regionale indelingen worden door het Centraal Bureau voor de
                 Statistiek (CBS) bijgehouden. CBS stelt ook gemeentecodes vast. Alle gemeenten hebben een unieke CBS-code. De CBS-code voor een gemeente wordt gevormd door vier cijfers met daaraan voorafgaand de letters ‘GM’.</p>
-            <p><b id="Ligging">Ligging</b>: Met ‘ligging’ wordt op passendeparkeernorm.nl geduid of een geselecteerde buurt binnen of buiten de bebouwde kom gelegen is. Bij een buurt buiten de bebouwde kom wordt voor de betreffende buurt het autobezit van
+            <!-- <p><b id="Ligging">Ligging</b>: Met ‘ligging’ wordt op passendeparkeernorm.nl geduid of een geselecteerde buurt binnen of buiten de bebouwde kom gelegen is. Bij een buurt buiten de bebouwde kom wordt voor de betreffende buurt het autobezit van
                 de typen woningen vergeleken met een waarde (afgeleid) van landelijke kengetallen voor het ‘buitengebied’. Wees er van bewust dat in het kader van de ruimtelijke ordening geen doorslaggevende betekenis toegekend hoeft te worden aan de
-                verkeerstechnische invulling van het begrip bebouwde kom in de zin van de Wegenverkeerswet, maar eerder aan de feitelijke situatie en de aard van de omgeving.</p>
-            <p><b id="Locatie">Locatie</b>: Met ‘locatie’ (ook wel ‘stedelijke zone’ genoemd) wordt voor een gebied het gecombineerde effect van de fysieke plek van het gebied en het aanbod en de kwaliteit van de verschillende vervoerswijzen op de vraag
+                verkeerstechnische invulling van het begrip bebouwde kom in de zin van de Wegenverkeerswet, maar eerder aan de feitelijke situatie en de aard van de omgeving.</p> -->
+            <!-- <p><b id="Locatie">Locatie</b>: Met ‘locatie’ (ook wel ‘stedelijke zone’ genoemd) wordt voor een gebied het gecombineerde effect van de fysieke plek van het gebied en het aanbod en de kwaliteit van de verschillende vervoerswijzen op de vraag
+                naar parkeerplaatsen geduid. Veelal wordt onderscheid gemaakt naar ‘centrum’, ‘schil/overloopgebied van het centrum’, ‘rest bebouwde kom’ en buitengebied’.</p> -->
+            <p><b id="Ligging">Ligging</b>: Met ‘ligging’ (ook wel ‘stedelijke zone’ genoemd) wordt voor een gebied het gecombineerde effect van de fysieke plek van het gebied en het aanbod en de kwaliteit van de verschillende vervoerswijzen op de vraag
                 naar parkeerplaatsen geduid. Veelal wordt onderscheid gemaakt naar ‘centrum’, ‘schil/overloopgebied van het centrum’, ‘rest bebouwde kom’ en buitengebied’.</p>
             <p><b id="Parkeerdruk">Parkeerdruk</b>: De parkeerdruk is de het aantal geparkeerde auto’s gedeeld door de parkeercapaciteit (het aantal parkeerplaatsen dat voor auto’s beschikbaar is). Het aantal parkeerplaatsen dat bezet is ten opzichte van
                 het totaal aantal aanwezige parkeerplaatsen.</p>
@@ -338,8 +340,8 @@
             <p><b id="Wijk">Wijk</b>: Onderdeel van een gemeente waarin een bepaalde vorm van bodemgebruik of bebouwing overheerst. Bijvoorbeeld: industriegebied, woongebied met hoogbouw of laagbouw. Een wijk bestaat uit één of meerdere buurten. CBS stelt
                 wijkcodes vast in het kader van de landelijke coördinatie van de wijk- en buurtindeling van gemeenten. Alle wijken hebben een unieke CBS-code. De code voor een wijk binnen een gemeente wordt gevormd door zes cijfers met daaraan voorafgaand
                 de letters ‘WK’. De eerste vier cijfers refereren naar de gemeentecode. WK000301 bijvoorbeeld betekent wijk 01 in gemeente 0003;</p>
-            <p><b id="Woningtype">Woningtype</b>: Voor een passende parkeernorm wordt voor wat betreft woningtype onderscheid gemaakt naar ‘vrijstaande woning’, ‘twee-onder-een-kap’, ‘rijwoning’, ‘meergezinswoning (laagbouw)’ en ‘meergezinswoning (hoogbouw)’.
-                Aanvullend wordt binnen deze indeling rekening gehouden met de eigendomssituatie. Hierdoor ontstaan uiteindelijk 15 woningtypen.</p>
+            <p><b id="Woningtype">Woningtype</b>: Voor een passende parkeernorm wordt voor wat betreft woningtype onderscheid gemaakt naar ‘vrijstaande woning’, ‘twee-onder-een-kap’, ‘rijwoning’ en ‘appartement’. Aanvullend wordt binnen deze indeling rekening
+                gehouden met de eigendomssituatie. Hierdoor ontstaan uiteindelijk 12 woningtypen.</p>
 
         </div>
         <div class="btn">
