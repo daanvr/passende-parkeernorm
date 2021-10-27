@@ -275,10 +275,11 @@ function newSelection(BUCODE, reselect) {
     }
 
     // buurtCodeVerglijk = wijkCode.replace("BU", "LI").slice(0, 7);
-    buurtCodeVerglijk = JSON.parse(JSON.stringify(wijkCode));
-    buurtCodeVerglijk = buurtCodeVerglijk.replace("BU", "LI");
-    buurtCodeVerglijk = buurtCodeVerglijk.replace("WK", "LI");
-    buurtCodeVerglijk = buurtCodeVerglijk.slice(0, 7);
+    buurtCodeVerglijk = JSON.parse(JSON.stringify(gemCode));
+    buurtCodeVerglijk = buurtCodeVerglijk.replace("GM", "LI");
+    // buurtCodeVerglijk = buurtCodeVerglijk.replace("WK", "LI");
+    // buurtCodeVerglijk = buurtCodeVerglijk.slice(0, 7);
+    buurtCodeVerglijk += 0; // "OAD" van buurt
     buurtCodeVerglijk += data.buurt[8]; // "OAD" van buurt
 
 
