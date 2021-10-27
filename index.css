@@ -216,7 +216,7 @@ p b.linkToIntern {
     /* border: solid red 1px; */
     float: left;
     /* padding-right: 5px; */
-    width: 260px;
+    width: 270px;
     /* min-width: 210px; */
     height: 100%;
     overflow: scroll;
@@ -245,7 +245,7 @@ p b.linkToIntern {
 
 .fullWidthSelect {
     /* display: inline-block; */
-    width: 220px;
+    width: 210px;
     /* height: 300px; */
 }
 
