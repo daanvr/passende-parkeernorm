@@ -426,6 +426,7 @@
             </div>
         </div>
         <div class="data">
+            <a id="PZH-logo" href="https://www.zuid-holland.nl" target="_blank" style="display: none;"><img class="PZH-logo" src="PZH.png" alt="Provincie Zuid-Holland"></a>
             <div class="center5050" style="text-align: center;">
                 <form action="">
                     <label for="">Type woning:</label>
@@ -564,6 +565,24 @@
     </div>
 
     <div id="uitkomsten" class="content-pannel animated" style="z-index: 2500; text-align: center;">
+
+        <div class="text" style="text-align: left;">
+            <p>
+                ‘Passendeparkeernorm.nl’ heeft u het autobezit getoond van het gewenste type woning in de door u gekozen buurt. Voor projecten, processen en procedures is het waarschijnlijk van belang om de achterliggende verkeerskundige onderbouwing goed te kunnen duiden.
+                Naast duiding van de wijze van berekenen en de interpretatie van de uitkomsten, dient de waarde voor het autobezit op maat opgehoogd te worden met het aantal parkeerplaatsen dat nodig is voor bezoekers van bewoners en voor het aantal auto’s
+                met een grijs kenteken. Op basis van grootschalig kentekenonderzoek en koppeling van de resultaten aan RDW-gegevens is ons bekend in welke mate dit moet.
+            </p>
+            <p>
+                Wilt u een nadere verkeerskundige onderbouwing? Stuur ons een mail en wij nemen contact met u op.
+            </p>
+        </div>
+
+        <img class="FnRPhoto" src="FR.jpeg" alt="Frank en Robert">
+        <!-- <img class="profileImg" src="FR.jpeg" alt="Frank en Robert"> -->
+        <!-- <img class="profileImg" src="Frank.jpeg" alt="Frank"> -->
+
+
+
         <h1 class="title" style="margin-bottom: 0;">Neem contact op voor toelichting </h1>
         <div style="width: fit-content; display: inline-block; padding: 0 20px;">
             <img class="profileImg" src="Robert.jpeg" alt="Robert">
@@ -593,22 +612,54 @@
     <!-- Javascript -->
     <script src="index.js"></script>
     <script>
+        let currentBUCODE = "";
+
+        // Create a popup, but don't add it to the map yet.
+        const popup = new mapboxgl.Popup({
+            closeButton: false,
+            offset: [10, 21],
+            closeOnClick: false,
+            // anchor: "top",
+            anchor: "top-left",
+            maxWidth: "none"
+        });
+
         map.on('load', function() { // When mapbox is ready
-            map.on('mousemove', 'buurt-2020-v1-0-0vrvzi', function(e) { // mouse moves over area
+            map.on('mousemove', 'buurten-nl-2020-v2', function(e) { // mouse moves over area
                 map.getCanvas().style.cursor = 'pointer'; // make mouse a pointer
                 var BUCODE = e.features[0].properties["BU_CODE"]; // GEt BU_CODE from map data
-                var fitler = [ // Make a filter that uses this BU_CODE
-                    "all", [
-                        "match", ["get", "BU_CODE"], // Select variable
-                        [BUCODE], // match the correct BU_CODE
-                        true,
-                        false
-                    ]
-                ];
-                map.setFilter('buurt-slect', fitler); // Set the Filter to the layer that displays selection
+
+                // Popup
+                const coordinates = [e.lngLat.lng, e.lngLat.lat];
+                const prop = e.features[0].properties;
+                let text = "";
+                text += "<b>";
+                text += prop.BU_NAAM;
+                text += "</b><br>";
+                text += "in <b>";
+                text += prop.GM_NAAM;
+                text += "</b>";
+                popup.setLngLat(coordinates).setHTML(text).addTo(map);
+
+                // Glowing Area
+                if (currentBUCODE === BUCODE) {} else {
+                    currentBUCODE = BUCODE;
+                    var fitler = [ // Make a filter that uses this BU_CODE
+                        "all", [
+                            "match", ["get", "BU_CODE"], // Select variable
+                            [BUCODE], // match the correct BU_CODE
+                            true,
+                            false
+                        ]
+                    ];
+                    map.setFilter('buurt-slect', fitler); // Set the Filter to the layer that displays selection
+                }
             });
-            map.on('mouseleave', 'buurt-2020-v1-0-0vrvzi', function() { // Whe mouse not on area layer
+            map.on('mouseleave', 'buurten-nl-2020-v2', function() { // Whe mouse not on area layer
                 map.getCanvas().style.cursor = ''; // use not pointer
+                popup.remove();
+
+                // Glowing Area
                 var fitler = [ // Make a filter that uses this BU_CODE
                     "all", [
                         "match", ["get", "BU_CODE"], // Select variable
@@ -618,10 +669,10 @@
                     ]
                 ];
                 map.setFilter('buurt-slect', fitler); // Set the Filter to the layer that displays selection
-
+                currentBUCODE = "";
             });
-            map.on('click', 'buurt-2020-v1-0-0vrvzi', function(e) {
-                var BUCODE = e.features[0].properties["BU_CODE"]; // GEt BU_CODE from map data
+            map.on('click', 'buurten-nl-2020-v2', function(e) {
+                var BUCODE = e.features[0].properties["BU_CODE"]; // Get BU_CODE from map data
                 newSelection(BUCODE);
             });
         });

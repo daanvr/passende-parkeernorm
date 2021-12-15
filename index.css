@@ -45,6 +45,19 @@ p b.linkToIntern {
     filter: blur(5px) grayscale(60%);
 }
 
+.mapboxgl-popup-tip {
+    display: none;
+}
+
+.mapboxgl-popup-content {
+    background: rgba(217, 0, 87, 0.7) !important;
+    color: white;
+    /* font-weight: bold; */
+    padding: 5px !important;
+    border-radius: 5px !important;
+    border-top-left-radius: 0 !important;
+}
+
 .menuPannel,
 .menuPannel * {
     box-sizing: border-box;
@@ -275,6 +288,12 @@ p b.linkToIntern {
     /* border-right: 1px solid grey; */
     height: calc(100% - 50px);
 }
+
+.PZH-logo {
+    width: 250px;
+}
+
+.FnRPhoto {}
 
 #selectionPannel .data {
     /* border: solid red 1px; */

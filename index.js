@@ -3,11 +3,11 @@ var dataAlles;
 var dataIsReadyBol = false;
 var dataIndex = [];
 
-
+const PZHGemeentes = ["Alblasserdam", "Albrandswaard", "Alphen aan den Rijn", "Barendrecht", "Bodegraven-Reeuwijk", "Brielle", "Capelle aan den IJssel", "Delft", "Dordrecht", "Goeree-Overflakkee", "Gorinchem", "Gouda", "’s-Gravenhage", "Hardinxveld-Giessendam", "Hellevoetsluis", "Hendrik-Ido-Ambacht", "Hillegom", "Hoeksche Waard", "Kaag en Braassem", "Katwijk", "Krimpen aan den IJssel", "Krimpenerwaard", "Lansingerland", "Leiden", "Leiderdorp", "Leidschendam-Voorburg", "Lisse", "Maassluis", "Midden-Delfland", "Molenlanden", "Nieuwkoop", "Nissewaard", "Noordwijk", "Oegstgeest", "Papendrecht", "Pijnacker-Nootdorp", "Ridderkerk", "Rijswijk", "Rotterdam", "Schiedam", "Sliedrecht", "Teylingen", "Vlaardingen", "Voorschoten", "Waddinxveen", "Wassenaar", "Westland", "Westvoorne", "Zoetermeer", "Zoeterwoude", "Zuidplas", "Zwijndrecht"];
 
 
 // sent a GET request to retrieve the CSV file contents
-$.get("extra/data_v2.csv", function(CSVdata) {
+$.get("extra/data_v3.csv", function(CSVdata) {
     // CSVdata is populated with the file contents
     // ready to be converted into an Array
     dataAlles = $.csv.toArrays(CSVdata);
@@ -27,14 +27,18 @@ function dataIsReady() {
     }
 }
 
-mapboxgl.accessToken = 'pk.eyJ1IjoiZ291ZGFwcGVsIiwiYSI6ImNrcDcyYXMzdTB3ZjIydHF0cm94emc4Nm8ifQ.onzub-d-L_rzw9dPV8H2xw';
+// mapboxgl.accessToken = 'pk.eyJ1IjoiZ291ZGFwcGVsIiwiYSI6ImNrcDcyYXMzdTB3ZjIydHF0cm94emc4Nm8ifQ.onzub-d-L_rzw9dPV8H2xw';
+mapboxgl.accessToken = 'pk.eyJ1IjoiZ291ZGFwcGVsIiwiYSI6ImNreDdpaWJkZzE4NWkycG81Mmp5eDhkODEifQ.1JrcLEPFMTNK9bFXSO2MmQ';
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/goudappel/ckp7wx0xi47ir17l1pmz0tc1x',
+    // style: 'mapbox://styles/goudappel/ckp7wx0xi47ir17l1pmz0tc1x',
+    style: 'mapbox://styles/goudappel/ckx4lhc3e5z5714o7lp1b09ws',
     // center: [5.922896, 51.975716],
     center: [5.387210205587345, 52.155190195840795],
     // zoom: 10
-    zoom: 7
+    zoom: 7,
+    // maxZoom: 13.89
+    maxZoom: 17
 });
 
 var coordinatesGeocoder = function(query) {
@@ -238,6 +242,8 @@ function newSelection(BUCODE, reselect) {
     }
 
 
+
+
     function selectData(code) {
         return dataAlles[dataIndex.indexOf(code)]
     }
@@ -263,6 +269,9 @@ function newSelection(BUCODE, reselect) {
     } else {
         data.buurt = selectData(buurtCode)
     }
+
+    console.log(data.buurt)
+    if (data.buurt[4] == "Zuid-Holland") { $("#PZH-logo").show() } else { $("#PZH-logo").hide() }
 
     wijkCode = wijkCode.replace("BU", "WK").slice(0, 8);
     gemCode = gemCode.replace("BU", "GM").slice(0, 6);
