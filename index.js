@@ -7,7 +7,7 @@ const PZHGemeentes = ["Alblasserdam", "Albrandswaard", "Alphen aan den Rijn", "B
 
 
 // sent a GET request to retrieve the CSV file contents
-$.get("extra/data_v3.csv", function(CSVdata) {
+$.get("extra/data_v2.csv", function(CSVdata) {
     // CSVdata is populated with the file contents
     // ready to be converted into an Array
     dataAlles = $.csv.toArrays(CSVdata);
@@ -18,7 +18,7 @@ $.get("extra/data_v3.csv", function(CSVdata) {
 
 // [ ] we could add a loading icon if need be
 function dataIsReady() {
-    console.log(dataAlles)
+    // console.log(dataAlles)
     for (i in dataAlles) {
         dataIndex.push(dataAlles[i][0])
     }

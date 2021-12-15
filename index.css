@@ -293,7 +293,11 @@ p b.linkToIntern {
     width: 250px;
 }
 
-.FnRPhoto {}
+.FnRPhoto {
+    margin-top: 50px;
+    width: 75%;
+    border-radius: 10px;
+}
 
 #selectionPannel .data {
     /* border: solid red 1px; */
@@ -341,9 +345,9 @@ p b.linkToIntern {
 }
 
 .profileInfo {
-    width: 300px;
+    width: 200px;
     margin: 0 auto;
-    /* padding: 15px 0 0 0; */
+    padding: 25px;
     text-align: center;
     color: white;
 }
