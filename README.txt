@@ -1,6 +1,6 @@
-==Passende Parkeernoorm info==
+# Passende Parkeernoorm info
 
-=Handlijding om de data te vervangen:=
+## Handlijding om de data te vervangen:
 1. het oude bestand backuppen door de naam te veranderen van data.csv naar data_backup_24dec2021.csv bijvoorbeeld.
 2. De nieuwe excel in het evenbeelt creeren van de vormalige data.csv. Dit betekend waarschijlijk:
     - het hernomen van collomen
@@ -17,6 +17,6 @@
 6. upload het bestand naar de webserver.
 7. syncorniser het Git project zo dat de ouden en nieuwe data ook in de git goed bewaard word.
 
-= Handljding voor het live zetten =
+## Handljding voor het live zetten
 - Selecteer alleen de benodigde files. bijvoorbeeld niet de backups, word bestanden en excel bestanden.
 - denk er de eerste keer ook aan om glijk het Github project weer op prive te zetten.
