@@ -18,4 +18,4 @@
 7. syncorniser het Git project zo dat de ouden en nieuwe data ook in de git goed bewaard word.
 
 ## Handljding voor het live zetten
-- Kopier alle files (maar niet de mappen en hun inhoud) en zet die in de map die gekopeld is aan de geweenste url.
+- Kopieer alle files (maar niet de mappen en hun inhoud) en zet die in de map die gekoppeld is aan de gewenste url
