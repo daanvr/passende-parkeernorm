@@ -18,5 +18,4 @@
 7. syncorniser het Git project zo dat de ouden en nieuwe data ook in de git goed bewaard word.
 
 ## Handljding voor het live zetten
-- Selecteer alleen de benodigde files. bijvoorbeeld niet de backups, word bestanden en excel bestanden.
-- denk er de eerste keer ook aan om glijk het Github project weer op prive te zetten.
+- Kopier alle files (maar niet de mappen en hun inhoud) en zet die in de map die gekopeld is aan de geweenste url.
