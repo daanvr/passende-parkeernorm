@@ -511,25 +511,28 @@ function newSelection(BUCODE, reselect) {
     };
 
     function addAreaStatistics() {
+        // console.log(data);
         $("#selectionPannel .areaStatistics").html("")
         $("#selectionPannel .areaStatistics").append('<div class="paddingBottomExtra"> WOZ-waarde: <span class="floatRight">' + data.buurt[5] + ' 000€</span></div>')
-
+        let sumTypeWoningen = (data.buurt[10] + data.buurt[11] + data.buurt[12] + data.buurt[14] + data.buurt[13]) / 100;
+        let sumEigendomssituatie = (data.buurt[15] + data.buurt[17] + data.buurt[16]) / 100;
+        let sumHuishoudengrootte = (data.buurt[18] + data.buurt[19] + data.buurt[20]) / 100;
         $("#selectionPannel .areaStatistics").append('<div> <b>Type woningen</b></div>')
-        $("#selectionPannel .areaStatistics").append('<div> Vrijstaande woning: <span class="floatRight">' + Math.round(data.buurt[10] * 100) + '%</span></div>')
-        $("#selectionPannel .areaStatistics").append('<div> 2-onder-1-kap: <span class="floatRight">' + Math.round(data.buurt[11] * 100) + '%</span></div>')
-        $("#selectionPannel .areaStatistics").append('<div> Rijwoning: <span class="floatRight">' + Math.round(data.buurt[12] * 100) + '%</span></div>')
+        $("#selectionPannel .areaStatistics").append('<div> Vrijstaande woning: <span class="floatRight">' + Math.round((data.buurt[10] / sumTypeWoningen) * 100) + '%</span></div>')
+        $("#selectionPannel .areaStatistics").append('<div> 2-onder-1-kap: <span class="floatRight">' + Math.round((data.buurt[11] / sumTypeWoningen) * 100) + '%</span></div>')
+        $("#selectionPannel .areaStatistics").append('<div> Rijwoning: <span class="floatRight">' + Math.round((data.buurt[12] / sumTypeWoningen) * 100) + '%</span></div>')
             // $("#selectionPannel .areaStatistics").append('<div> Meergez. laagb: <span class="floatRight">' + Math.round(data.buurt[13] * 100) + '%</span></div>')
-        $("#selectionPannel .areaStatistics").append('<div class="paddingBottomExtra"> Appartement: <span class="floatRight">' + Math.round((Number(data.buurt[14]) + Number(data.buurt[13])) * 100) + '%</span></div>')
+        $("#selectionPannel .areaStatistics").append('<div class="paddingBottomExtra"> Appartement: <span class="floatRight">' + Math.round((Number((data.buurt[14] / sumTypeWoningen)) + Number((data.buurt[13] / sumTypeWoningen))) * 100) + '%</span></div>')
 
         $("#selectionPannel .areaStatistics").append('<div> <b>Eigendomssituatie</b></div>')
-        $("#selectionPannel .areaStatistics").append('<div> Koopwoning: <span class="floatRight">' + Math.round(data.buurt[15] * 100) + '%</span></div>')
-        $("#selectionPannel .areaStatistics").append('<div> Particuliere huurwoning: <span class="floatRight">' + Math.round(data.buurt[17] * 100) + '%</span></div>')
-        $("#selectionPannel .areaStatistics").append('<div class="paddingBottomExtra"> Sociale huurwoning: <span class="floatRight">' + Math.round(data.buurt[16] * 100) + '%</span></div>')
+        $("#selectionPannel .areaStatistics").append('<div> Koopwoning: <span class="floatRight">' + Math.round((data.buurt[15] / sumEigendomssituatie) * 100) + '%</span></div>')
+        $("#selectionPannel .areaStatistics").append('<div> Particuliere huurwoning: <span class="floatRight">' + Math.round((data.buurt[17] / sumEigendomssituatie) * 100) + '%</span></div>')
+        $("#selectionPannel .areaStatistics").append('<div class="paddingBottomExtra"> Sociale huurwoning: <span class="floatRight">' + Math.round((data.buurt[16] / sumEigendomssituatie) * 100) + '%</span></div>')
 
         $("#selectionPannel .areaStatistics").append('<div> <b>Huishoudengrootte</b> </div>')
-        $("#selectionPannel .areaStatistics").append('<div> 1 persoonshuishouden: <span class="floatRight">' + Math.round(data.buurt[18] * 100) + '%</span></div>')
-        $("#selectionPannel .areaStatistics").append('<div> 2 persoonshuishouden: <span class="floatRight">' + Math.round(data.buurt[19] * 100) + '%</span></div>')
-        $("#selectionPannel .areaStatistics").append('<div class="paddingBottomExtra"> 3+ persoonshuishouden: <span class="floatRight">' + Math.round(data.buurt[20] * 100) + '%</span></div>')
+        $("#selectionPannel .areaStatistics").append('<div> 1 persoonshuishouden: <span class="floatRight">' + Math.round((data.buurt[18] / sumHuishoudengrootte) * 100) + '%</span></div>')
+        $("#selectionPannel .areaStatistics").append('<div> 2 persoonshuishouden: <span class="floatRight">' + Math.round((data.buurt[19] / sumHuishoudengrootte) * 100) + '%</span></div>')
+        $("#selectionPannel .areaStatistics").append('<div class="paddingBottomExtra"> 3+ persoonshuishouden: <span class="floatRight">' + Math.round((data.buurt[20] / sumHuishoudengrootte) * 100) + '%</span></div>')
         $("#selectionPannel .areaStatistics").append('<div class="paddingBottomExtra"> <br></div>')
 
         // $("#selectionPannel .areaStatistics").append('<div> Keyname: <span class="floatRight">35456€</span></div>')
