@@ -222,6 +222,7 @@ function menuSelect(menuItem, possition) {
             break;
 
         case "uitkomsten":
+            $("#menu-2").addClass("active");
             $("#uitkomsten").show();
             $("#selectionPannel").addClass("blured-map");
             $("#closeOnClick").show();
