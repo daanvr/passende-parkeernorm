@@ -511,7 +511,7 @@ function newSelection(BUCODE, reselect) {
     };
 
     function addAreaStatistics() {
-        // console.log(data);
+        console.log(data.buurt);
         $("#selectionPannel .areaStatistics").html("")
         $("#selectionPannel .areaStatistics").append('<div class="paddingBottomExtra"> WOZ-waarde: <span class="floatRight">' + data.buurt[5] + ' 000€</span></div>')
         let sumTypeWoningen = (Number(data.buurt[10]) + Number(data.buurt[11]) + Number(data.buurt[12]) + Number(data.buurt[14]) + Number(data.buurt[13])) / 100;
