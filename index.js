@@ -677,7 +677,7 @@ function newSelection(BUCODE, reselect) {
 
         //De geselecteerde buurt
         if (diagramData.buurt_pct == "-") {
-            $("#Gekozen-buurt > tspan").text("Geselecteerde buurt: Geen gegevens voor deze sub specificaties.");
+            $("#Gekozen-buurt > tspan").text("Geselecteerde buurt: Geen data beschikbaar.");
             $("#buurt-bar").width(5); // bburt bar brete
         } else {
             $("#Gekozen-buurt > tspan").text("Geselecteerde buurt: " + data.buurt[3].replace(data.gemeente[3] + "|", ""));
@@ -687,7 +687,7 @@ function newSelection(BUCODE, reselect) {
 
         //Verglijkbare buurt
         if (diagramData.verlijk_pct == "-") {
-            $("#Verglijkbare-buurten > tspan").text("Vergelijkbare buurt. Geen gegevens voor deze sub specificaties");
+            $("#Verglijkbare-buurten > tspan").text("Vergelijkbare buurt. Geen data beschikbaar");
             $("#verglijk-bar").width(5); // verglijkbaar bar brete
         } else {
             $("#Verglijkbare-buurten > tspan").text("Vergelijkbare buurten (" + $("#ligging option:selected").text() + ")");
@@ -697,7 +697,7 @@ function newSelection(BUCODE, reselect) {
 
         //Wijk
         if (diagramData.wijk_pct == "-") {
-            $("#Betrefende-wijk > tspan").text("Wijk: Geen gegevens voor deze sub specificaties");
+            $("#Betrefende-wijk > tspan").text("Wijk: Geen data beschikbaar");
             $("#wijk-bar").width(5); // wijk bar brete
         } else {
             $("#Betrefende-wijk > tspan").text("Wijk: " + data.wijk[3].replace(data.gemeente[3] + "|", "").replace("Wijk", ""));
