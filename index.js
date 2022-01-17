@@ -7,7 +7,7 @@ const PZHGemeentes = ["Alblasserdam", "Albrandswaard", "Alphen aan den Rijn", "B
 
 
 // sent a GET request to retrieve the CSV file contents
-$.get("data_v3.csv", function(CSVdata) {
+$.get("data_v4.csv", function(CSVdata) {
     // CSVdata is populated with the file contents
     // ready to be converted into an Array
     dataAlles = $.csv.toArrays(CSVdata);
