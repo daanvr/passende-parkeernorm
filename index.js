@@ -650,7 +650,7 @@ function newSelection(BUCODE, reselect) {
             wijk_pct: data.wijk[typeWooningCollomIndezx[dropdownSlections.type_wooning]],
             // wijk_pct: "+98%",
             // kerngetal_val: data.buurt[21],
-            kerngetal_val: kengetalen[dropdownSlections.Steedelijkheidsgraad][dropdownSlections.type_wooning][liggingNbr],
+            kerngetal_val: (kengetalen[dropdownSlections.Steedelijkheidsgraad][dropdownSlections.type_wooning][liggingNbr]).toFixed(1),
 
             // dropdownSlections.ligging
             // dropdownSlections.Steedelijkheidsgraad
