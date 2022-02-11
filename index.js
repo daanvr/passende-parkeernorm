@@ -515,7 +515,7 @@ function newSelection(BUCODE, reselect) {
     function addAreaStatistics() {
         console.log(data.buurt);
         $("#selectionPannel .areaStatistics").html("")
-        $("#selectionPannel .areaStatistics").append('<div class="paddingBottomExtra"> WOZ-waarde: <span class="floatRight">€' + data.buurt[5] + '.000</span></div>')
+        $("#selectionPannel .areaStatistics").append('<div class="paddingBottomExtra"> WOZ-waarde: <span class="floatRight">&#128;' + data.buurt[5] + '.000</span></div>')
         let sumTypeWoningen = (Number(data.buurt[10]) + Number(data.buurt[11]) + Number(data.buurt[12]) + Number(data.buurt[14]) + Number(data.buurt[13])) / 100;
         let sumEigendomssituatie = (Number(data.buurt[15]) + Number(data.buurt[17]) + Number(data.buurt[16])) / 100;
         let sumHuishoudengrootte = (Number(data.buurt[18]) + Number(data.buurt[19]) + Number(data.buurt[20])) / 100;
@@ -537,7 +537,6 @@ function newSelection(BUCODE, reselect) {
         $("#selectionPannel .areaStatistics").append('<div class="paddingBottomExtra"> 3+ persoonshuishouden: <span class="floatRight">' + Math.round((Number(data.buurt[20]) / sumHuishoudengrootte)) + '%</span></div>')
         $("#selectionPannel .areaStatistics").append('<div class="paddingBottomExtra"> <br></div>')
 
-        // $("#selectionPannel .areaStatistics").append('<div> Keyname: <span class="floatRight">35456€</span></div>')
     }
 
     function prefillDropdownValues() {
